@@ -1,10 +1,10 @@
 /**
  * Vibe-Research - Main JavaScript
- * 资讯雷达交互逻辑
+ * Shared utilities, localStorage helpers, modal & toast
  */
 
 // ============================================
-// Tag Cloud Filtering
+// Tag Cloud Data
 // ============================================
 const tagData = {
   ai: {
@@ -129,72 +129,84 @@ const tagData = {
   },
 };
 
+// ============================================
+// localStorage helpers
+// ============================================
+function lsGet(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; }
+}
+function lsSet(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
+
+// ============================================
+// Toast
+// ============================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============================================
+// Save Note Modal (used by index.html)
+// ============================================
+let pendingNoteTitle = '';
+let pendingNoteContent = '';
+
+function openSaveModal(tagLabel, items) {
+  pendingNoteTitle = tagLabel + ' 资讯要点 ' + new Date().toISOString().slice(0, 10);
+  pendingNoteContent = items.join('\n');
+  const modal = document.getElementById('saveNoteModal');
+  if (modal) {
+    document.getElementById('noteTitleInput').value = pendingNoteTitle;
+    document.getElementById('noteContentInput').value = pendingNoteContent;
+    modal.classList.add('show');
+  }
+}
+
+function closeSaveModal() {
+  const modal = document.getElementById('saveNoteModal');
+  if (modal) modal.classList.remove('show');
+}
+
+function confirmSaveNote() {
+  const title = document.getElementById('noteTitleInput').value.trim();
+  const content = document.getElementById('noteContentInput').value.trim();
+  if (!title || !content) { showToast('标题和内容不能为空'); return; }
+  const notes = lsGet('researchNotes', []);
+  notes.unshift({
+    id: Date.now(),
+    title,
+    content,
+    date: new Date().toISOString().slice(0, 10),
+    tags: ['资讯雷达'],
+  });
+  lsSet('researchNotes', notes);
+  closeSaveModal();
+  showToast('已存入研究记录');
+}
+
+// ============================================
+// Tag Cloud Filtering (index.html)
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Tag cloud filtering
   const tagButtons = document.querySelectorAll('#tagCloud .btn-tag');
   const summaryBody = document.getElementById('summaryBody');
   const currentTagLabel = document.getElementById('currentTagLabel');
 
-  tagButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      // Remove active from all
-      tagButtons.forEach((b) => b.classList.remove('active'));
-      // Add active to clicked
-      btn.classList.add('active');
-
-      const tagKey = btn.dataset.tag;
-      const data = tagData[tagKey];
-      if (data && summaryBody) {
-        currentTagLabel.textContent = data.label;
-        summaryBody.innerHTML = data.summary
-          .map((item) => `<li>${item}</li>`)
-          .join('');
-      }
-    });
-  });
-
-  // Refresh button
-  const refreshBtn = document.getElementById('refreshBtn');
-  if (refreshBtn) {
-    refreshBtn.addEventListener('click', () => {
-      refreshBtn.querySelector('span:first-child').classList.add('spin');
-      setTimeout(() => {
-        refreshBtn.querySelector('span:first-child').classList.remove('spin');
-      }, 1000);
-    });
-  }
-
-  // Extract all button
-  const extractBtn = document.getElementById('extractBtn');
-  if (extractBtn) {
-    extractBtn.addEventListener('click', () => {
-      extractBtn.innerHTML = '<span class="spin">⏳</span><span>提炼中...</span>';
-      setTimeout(() => {
-        extractBtn.innerHTML = '<span>✨</span><span>一键提炼全部要点</span>';
-      }, 2000);
-    });
-  }
-
-  // Re-extract button
-  const reExtractBtn = document.getElementById('reExtractBtn');
-  if (reExtractBtn) {
-    reExtractBtn.addEventListener('click', () => {
-      reExtractBtn.querySelector('span:first-child').classList.add('spin');
-      setTimeout(() => {
-        reExtractBtn.querySelector('span:first-child').classList.remove('spin');
-      }, 1000);
-    });
-  }
-
-  // Save to notes button
-  const saveToNotesBtn = document.getElementById('saveToNotesBtn');
-  if (saveToNotesBtn) {
-    saveToNotesBtn.addEventListener('click', () => {
-      const original = saveToNotesBtn.innerHTML;
-      saveToNotesBtn.innerHTML = '<span>✅</span><span>已保存</span>';
-      setTimeout(() => {
-        saveToNotesBtn.innerHTML = original;
-      }, 2000);
+  if (tagButtons.length && summaryBody && currentTagLabel) {
+    tagButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tagButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tagKey = btn.dataset.tag;
+        const data = tagData[tagKey];
+        if (data) {
+          currentTagLabel.textContent = data.label;
+          summaryBody.innerHTML = data.summary.map((item) => `<li>${item}</li>`).join('');
+        }
+      });
     });
   }
 });
