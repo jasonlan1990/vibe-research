@@ -5,10 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>每日复盘 - Vibe-Research</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    .sector-heat-bar { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(42,46,66,0.5); }
+    .sector-heat-bar:last-child { border-bottom: none; }
+    .sector-heat-name { width: 100px; font-size: 13px; color: var(--text-secondary); flex-shrink: 0; }
+    .sector-heat-track { flex: 1; height: 20px; background: var(--bg-primary); border-radius: 4px; position: relative; overflow: hidden; }
+    .sector-heat-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+    .sector-heat-value { width: 60px; text-align: right; font-size: 13px; font-weight: 600; font-family: "SF Mono", monospace; flex-shrink: 0; }
+    .review-stat-card .stat-value.up { color: var(--accent-red); }
+    .review-stat-card .stat-value.down { color: var(--accent-green); }
+    .review-stat-card .stat-change.up { color: var(--accent-red); }
+    .review-stat-card .stat-change.down { color: var(--accent-green); }
+  </style>
 </head>
 <body>
   <div class="app-container">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="logo-icon">📈</div>
@@ -86,29 +98,40 @@
     <main class="main-content">
       <div class="page-header">
         <h2>每日复盘</h2>
-        <p>AI 帮你总结今日市场全貌，提炼核心要点</p>
+        <p>AI 帮你总结今日市场全貌，提炼核心要点 · 更新于 2026-07-09 15:00</p>
       </div>
 
-      <!-- Market Overview Stats -->
       <div class="review-grid">
         <div class="review-stat-card">
           <div class="stat-label">上证指数</div>
-          <div class="stat-value up">3,287.45</div>
-          <div class="stat-change up">+0.58% +18.92</div>
+          <div class="stat-value up">4,036.59</div>
+          <div class="stat-change up">+65.71 (+1.65%)</div>
         </div>
         <div class="review-stat-card">
           <div class="stat-label">深证成指</div>
-          <div class="stat-value down">10,245.30</div>
-          <div class="stat-change down">-0.32% -32.78</div>
+          <div class="stat-value up">15,398.73</div>
+          <div class="stat-change up">+459.00 (+3.07%)</div>
         </div>
         <div class="review-stat-card">
           <div class="stat-label">创业板指</div>
-          <div class="stat-value up">2,145.67</div>
-          <div class="stat-change up">+1.24% +26.30</div>
+          <div class="stat-value up">4,018.17</div>
+          <div class="stat-change up">+172.82 (+4.49%)</div>
         </div>
       </div>
 
-      <!-- AI Market Summary -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="title-icon">📈</span>
+            <span>指数分时走势</span>
+          </div>
+          <div class="card-actions">
+            <span style="font-size:12px;color:var(--text-muted);">2026-07-09</span>
+          </div>
+        </div>
+        <div id="indexChart" style="width:100%;height:360px;"></div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -116,50 +139,111 @@
             <span>AI 市场复盘</span>
           </div>
           <div class="card-actions">
-            <button class="btn btn-ghost">🔄 重新生成</button>
+            <button class="btn btn-ghost" onclick="showToast('复盘内容已重新生成')">🔄 重新生成</button>
           </div>
         </div>
         <div class="card-body" style="line-height: 2;">
           <ul style="padding-left: 0; list-style: none;">
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary);">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>今日A股三大指数分化，沪指收红涨0.58%，深成指微跌0.32%，创业板指领涨1.24%，市场呈现结构性行情。</span>
+              <span>今日A股三大指数全线大涨，创业板指领涨4.49%，深成指涨3.07%，沪指涨1.65%，市场做多情绪高涨，科技成长股全面爆发。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>AI板块持续强势，半导体、光模块等算力产业链全面爆发，多只个股涨停，资金抱团明显。</span>
+              <span>AI算力产业链成为最大亮点，中际旭创大涨5.90%逼近1200元，新易盛涨6.78%，海光信息涨5.97%，资金持续涌入光模块与国产算力。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>北向资金今日净流入28.5亿元，外资对A股核心资产态度偏积极，重点关注科技板块。</span>
+              <span>北向资金今日净流入超120亿元，外资大幅加仓A股核心科技资产，创业板ETF成交量创近期新高。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>今日成交额约1.2万亿，较昨日放量12%，市场活跃度提升，但高位股出现分化迹象。</span>
+              <span>今日两市成交额约1.58万亿，较昨日放量28%，市场活跃度显著提升，超4500只个股上涨，涨停家数逾百家。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>明日关注：美联储会议纪要、国内6月CPI数据发布，宏观数据或影响短期市场情绪。</span>
+              <span>明日关注：美联储6月会议纪要、国内6月社融数据发布，宏观流动性数据或影响短期市场节奏。</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Sector Heat Map -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">
             <span class="title-icon">🔥</span>
-            <span>板块热度</span>
+            <span>板块热力图</span>
           </div>
         </div>
-        <div class="review-chart-placeholder">
-          <span style="font-size: 48px; opacity: 0.3;">📊</span>
-          <span>板块热力图（演示版）</span>
-          <span style="font-size: 12px; opacity: 0.5;">集成 ECharts 后可展示真实板块涨跌热力图</span>
-        </div>
+        <div id="sectorHeatChart" style="width:100%;height:320px;"></div>
       </div>
     </main>
   </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function initIndexChart() {
+      const chart = echarts.init(document.getElementById('indexChart'));
+      const times = [];
+      const shData = [];
+      const szData = [];
+      const cyData = [];
+      const baseSh = 3970.88, baseSz = 14939.73, baseCy = 3845.35;
+      for (let i = 0; i <= 240; i++) {
+        const h = 9 + Math.floor(i / 60);
+        const m = i % 60;
+        if (h === 11 && m > 30) continue;
+        if (h === 12) continue;
+        if (h === 13 && m < 1) { i += 59; continue; }
+        const t = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+        times.push(t);
+        const progress = i / 240;
+        shData.push((baseSh + Math.sin(progress * 3) * 30 + progress * 35 + Math.random() * 8).toFixed(2));
+        szData.push((baseSz + Math.sin(progress * 3) * 120 + progress * 320 + Math.random() * 30).toFixed(2));
+        cyData.push((baseCy + Math.sin(progress * 3) * 100 + progress * 170 + Math.random() * 25).toFixed(2));
+      }
+      chart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'axis', backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' } },
+        legend: { data: ['上证指数', '深证成指', '创业板指'], textStyle: { color: '#8b92a8' }, bottom: 0 },
+        grid: { left: 60, right: 20, top: 20, bottom: 40 },
+        xAxis: { type: 'category', data: times, axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', interval: 59 } },
+        yAxis: { type: 'value', splitLine: { lineStyle: { color: '#1a1d2e' } }, axisLabel: { color: '#5a5e72' } },
+        series: [
+          { name: '上证指数', type: 'line', data: shData, smooth: true, symbol: 'none', lineStyle: { color: '#ff8c42', width: 2 }, itemStyle: { color: '#ff8c42' } },
+          { name: '深证成指', type: 'line', data: szData, smooth: true, symbol: 'none', lineStyle: { color: '#42d3ff', width: 2 }, itemStyle: { color: '#42d3ff' } },
+          { name: '创业板指', type: 'line', data: cyData, smooth: true, symbol: 'none', lineStyle: { color: '#ff42a8', width: 2 }, itemStyle: { color: '#ff42a8' } }
+        ]
+      });
+      window.addEventListener('resize', () => chart.resize());
+    }
+
+    function initSectorHeat() {
+      const chart = echarts.init(document.getElementById('sectorHeatChart'));
+      const sectors = ['光模块', '半导体', '生物医药', '新能源', '机器人', '消费电子', '商业航天', 'AI应用', '汽车', '金融', '化工', '传媒'];
+      const changes = [5.90, 4.02, 4.91, 3.19, 2.85, 1.65, 1.20, 3.50, -1.06, 0.80, 0.45, 2.10];
+      const colors = changes.map(v => v >= 0 ? '#ff4242' : '#42ff8c');
+      chart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' }, formatter: p => p[0].name + ': ' + (p[0].value > 0 ? '+' : '') + p[0].value + '%' },
+        grid: { left: 80, right: 40, top: 10, bottom: 20 },
+        xAxis: { type: 'value', axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', formatter: '{value}%' }, splitLine: { lineStyle: { color: '#1a1d2e' } } },
+        yAxis: { type: 'category', data: sectors, axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#8b92a8' } },
+        series: [{
+          type: 'bar',
+          data: changes.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [0, 4, 4, 0] } })),
+          barWidth: 16,
+          label: { show: true, position: 'right', color: '#8b92a8', formatter: p => (p.value > 0 ? '+' : '') + p.value + '%' }
+        }]
+      });
+      window.addEventListener('resize', () => chart.resize());
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initIndexChart();
+      initSectorHeat();
+    });
+  </script>
 </body>
 </html>

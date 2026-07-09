@@ -5,10 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>板块中心 - Vibe-Research</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .sector-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; transition: var(--transition); cursor: pointer; }
+    .sector-card:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .sector-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .sector-card-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
+    .sector-card-title .sector-icon { font-size: 18px; }
+    .sector-card-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--tag-bg); border: 1px solid var(--tag-border); color: var(--accent-orange-light); font-weight: 500; }
+    .sector-card-badge.down { background: rgba(66,255,140,0.12); border-color: rgba(66,255,140,0.3); color: var(--accent-green); }
+    .sector-card-body { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+    .sector-card-body .sector-stat { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .sector-card-body .sector-stat-label { color: var(--text-muted); }
+    .sector-card-body .sector-stat-value { color: var(--text-primary); font-weight: 500; font-family: "SF Mono", monospace; }
+    .sector-card-body .sector-stat-value.up { color: var(--accent-red); }
+    .sector-card-body .sector-stat-value.down { color: var(--accent-green); }
+    .sentiment-high { color: var(--accent-red) !important; }
+    .sentiment-mid { color: var(--accent-yellow) !important; }
+    .sentiment-low { color: var(--text-muted) !important; }
+    @media (max-width: 1200px) { .sector-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .sector-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <div class="app-container">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="logo-icon">📈</div>
@@ -86,17 +106,17 @@
     <main class="main-content">
       <div class="page-header">
         <h2>板块中心</h2>
-        <p>追踪热门赛道，洞察行业趋势</p>
+        <p>追踪热门赛道，洞察行业趋势 · 更新于 2026-07-09 15:00</p>
       </div>
 
       <div class="sector-grid">
-        <div class="sector-card">
+        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🤖</span>
               <span>人形机器人</span>
             </div>
-            <span class="sector-card-badge">+3.24%</span>
+            <span class="sector-card-badge">+2.85%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -113,12 +133,12 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value" style="color: var(--accent-green);">🔥 高</span>
+              <span class="sector-stat-value sentiment-high">🔥 高</span>
             </div>
           </div>
         </div>
 
-        <div class="sector-card">
+        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🧠</span>
@@ -141,18 +161,18 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value" style="color: var(--accent-red);">🔥🔥 极高</span>
+              <span class="sector-stat-value sentiment-high">🔥🔥 极高</span>
             </div>
           </div>
         </div>
 
-        <div class="sector-card">
+        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">💾</span>
               <span>HBM</span>
             </div>
-            <span class="sector-card-badge">+2.18%</span>
+            <span class="sector-card-badge">+1.68%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -169,18 +189,18 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value" style="color: var(--accent-yellow);">⚡ 中高</span>
+              <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
         </div>
 
-        <div class="sector-card">
+        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🔌</span>
               <span>光互联</span>
             </div>
-            <span class="sector-card-badge" style="background: rgba(66,255,140,0.12); border-color: rgba(66,255,140,0.3); color: var(--accent-green);">-0.85%</span>
+            <span class="sector-card-badge">+3.50%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -189,20 +209,20 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value down">-2.14%</span>
+              <span class="sector-stat-value up">+14.20%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
-              <span class="sector-stat-value">9</span>
+              <span class="sector-stat-value">22</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value" style="color: var(--text-muted);">😐 中性</span>
+              <span class="sector-stat-value sentiment-high">🔥 高</span>
             </div>
           </div>
         </div>
 
-        <div class="sector-card">
+        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🚀</span>
@@ -225,18 +245,18 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value" style="color: var(--accent-yellow);">⚡ 中高</span>
+              <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
         </div>
 
-        <div class="sector-card">
+        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">💊</span>
               <span>生物医药</span>
             </div>
-            <span class="sector-card-badge" style="background: rgba(66,255,140,0.12); border-color: rgba(66,255,140,0.3); color: var(--accent-green);">-0.42%</span>
+            <span class="sector-card-badge down">-0.42%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -253,12 +273,15 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value" style="color: var(--text-muted);">😐 中性</span>
+              <span class="sector-stat-value sentiment-low">😐 中性</span>
             </div>
           </div>
         </div>
       </div>
     </main>
   </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>资讯雷达 - Vibe-Research</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-card); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: var(--radius-md); font-size: 13px; color: var(--text-secondary); z-index: 1000; opacity: 0; transition: all 0.3s ease; box-shadow: var(--shadow); }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .note-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 999; }
+    .note-modal.show { display: flex; }
+    .note-modal-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; width: 90%; max-width: 480px; }
+    .note-modal-content h3 { margin-bottom: 16px; font-size: 16px; }
+    .note-modal-content input, .note-modal-content textarea { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 14px; color: var(--text-primary); font-family: inherit; font-size: 14px; margin-bottom: 12px; outline: none; }
+    .note-modal-content textarea { resize: vertical; min-height: 80px; }
+    .note-modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+    .news-item .news-tag { font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--tag-chip); color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+  </style>
 </head>
 <body>
   <div class="app-container">
@@ -78,24 +90,18 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">
-          联系作者：<a href="#">simonlin.net</a>
-        </div>
-        <div class="disclaimer">
-          v0.1.0 · 不荐股 · 不预测 · 无倾向
-        </div>
+        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-      <!-- Page Header -->
       <div class="page-header">
         <h2>资讯雷达</h2>
         <p>多来源资讯中心：AI 帮你跨源捞资讯、提炼要点</p>
       </div>
 
-      <!-- Tab Bar -->
       <div class="tab-bar">
         <button class="tab-btn">
           <span class="tab-icon">📉</span>
@@ -116,7 +122,6 @@
         </button>
       </div>
 
-      <!-- Card: Investment News Feed -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -130,7 +135,7 @@
           <div class="info-left">
             <span>108 个公开源 · 近 7 天</span>
             <span>·</span>
-            <span>更新于 2026-07-05 10:13</span>
+            <span>更新于 2026-07-09 15:00</span>
           </div>
           <div class="info-right">
             <button class="btn btn-primary" id="extractBtn">
@@ -144,7 +149,6 @@
           </div>
         </div>
 
-        <!-- Tag Cloud -->
         <div class="tag-cloud" id="tagCloud">
           <button class="btn-tag tag-orange active" data-tag="ai">
             <span class="tag-dot"></span>
@@ -208,7 +212,6 @@
           </button>
         </div>
 
-        <!-- AI Summary Section -->
         <div class="ai-summary" id="aiSummary">
           <div class="refresh-btn" id="reExtractBtn">
             <span>🔄</span>
@@ -237,63 +240,139 @@
           </div>
         </div>
 
-        <!-- News List -->
         <div class="news-list" id="newsList">
           <div class="news-item">
-            <span class="news-time">07-05 04:55</span>
-            <span class="news-source">TechCrunch...</span>
-            <span class="news-title">New Google commercial imagines a Declaration of Independence written with help from AI</span>
+            <span class="news-time">07-09 14:30</span>
+            <span class="news-source">TechCrunch</span>
+            <span class="news-title">OpenAI announces GPT-5.6 with multimodal reasoning breakthrough, stock AI names surge</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-05 02:00</span>
-            <span class="news-source">TechCrunch...</span>
-            <span class="news-title">Midjourney wants Hollywood studios to reveal the details of their AI usage</span>
+            <span class="news-time">07-09 13:15</span>
+            <span class="news-source">财联社</span>
+            <span class="news-title">中际旭创盘中触及1200元关口，光模块龙头持续受益于AI算力扩容</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-05 00:32</span>
-            <span class="news-source">TechCrunch...</span>
-            <span class="news-title">Alibaba reportedly bans employees from using Claude Code</span>
-          </div>
-          <div class="news-item">
-            <span class="news-time">07-05 00:21</span>
-            <span class="news-source">MarkTechP...</span>
-            <span class="news-title">Anthropic Launches Claude Science Beta: A Multi-Agent AI Workbench for Reproducible Genomics, Proteomics, and Cheminformatics Pipelines</span>
-          </div>
-          <div class="news-item">
-            <span class="news-time">07-05 00:04</span>
-            <span class="news-source">MarkTechP...</span>
-            <span class="news-title">NVIDIA HORIZON: A Hands-Free Agent that Evolves Git Worktrees and Hits 100% RTL Benchmark Completion</span>
-          </div>
-          <div class="news-item">
-            <span class="news-time">07-04 23:45</span>
+            <span class="news-time">07-09 11:45</span>
             <span class="news-source">Reuters</span>
-            <span class="news-title">OpenAI reportedly delays GPT-5.6 release to July 7 amid technical challenges</span>
+            <span class="news-title">China EV sales hit record high in June, BYD and NIO lead monthly deliveries</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-04 22:30</span>
+            <span class="news-time">07-09 10:20</span>
             <span class="news-source">36Kr</span>
-            <span class="news-title">光象科技完成数亿元天使轮融资，红杉中国、真格基金联合领投</span>
+            <span class="news-title">宁德时代发布新一代凝聚态电池，能量密度突破500Wh/kg</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-04 21:15</span>
+            <span class="news-time">07-09 09:55</span>
             <span class="news-source">Bloomberg</span>
-            <span class="news-title">Microsoft expands AI infrastructure in Asia-Pacific with $3 billion investment</span>
+            <span class="news-title">NVIDIA supply chain partners see 40% order growth in Q3, sources say</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-04 20:00</span>
-            <span class="news-source">TechCrunch...</span>
-            <span class="news-title">Google's new AI assistant can now browse the web and book flights for you</span>
+            <span class="news-time">07-09 08:30</span>
+            <span class="news-source">证券时报</span>
+            <span class="news-title">创业板指大涨超4%，科技股全线爆发，北向资金净流入超80亿</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-04 18:30</span>
+            <span class="news-time">07-08 22:00</span>
             <span class="news-source">The Verge</span>
-            <span class="news-title">Apple Intelligence delayed to iOS 18.1, missing initial launch window</span>
+            <span class="news-title">Apple Intelligence rollout expands to 12 new countries, Siri upgrade delayed</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-08 20:45</span>
+            <span class="news-source">华尔街见闻</span>
+            <span class="news-title">药明康德Q2业绩超预期，在手订单同比增长35%，海外业务稳健</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-08 18:10</span>
+            <span class="news-source">TechCrunch</span>
+            <span class="news-title">Midjourney V7 launches with real-time video generation, challenging Runway</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-08 16:30</span>
+            <span class="news-source">雪球</span>
+            <span class="news-title">海光信息DCU芯片获大型互联网公司批量采购，国产算力替代加速</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-08 14:20</span>
+            <span class="news-source">Financial Times</span>
+            <span class="news-title">Global semiconductor equipment spending to rise 15% in 2026, SEMI reports</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-08 12:00</span>
+            <span class="news-source">第一财经</span>
+            <span class="news-title">新易盛800G光模块出货量环比增长50%，海外云厂商 capex 指引上调</span>
           </div>
         </div>
       </div>
     </main>
   </div>
 
+  <div class="toast" id="toast"></div>
+
+  <div class="note-modal" id="saveNoteModal">
+    <div class="note-modal-content">
+      <h3>💾 存入研究记录</h3>
+      <input type="text" id="noteTitleInput" placeholder="笔记标题">
+      <textarea id="noteContentInput" placeholder="笔记内容"></textarea>
+      <div class="note-modal-actions">
+        <button class="btn btn-outline" onclick="closeSaveModal()">取消</button>
+        <button class="btn btn-primary" onclick="confirmSaveNote()">保存</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
+  <script>
+    // Index page specific logic
+    document.addEventListener('DOMContentLoaded', () => {
+      // Refresh button
+      const refreshBtn = document.getElementById('refreshBtn');
+      if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+          refreshBtn.querySelector('span:first-child').classList.add('spin');
+          showToast('正在刷新资讯...');
+          setTimeout(() => {
+            refreshBtn.querySelector('span:first-child').classList.remove('spin');
+            showToast('资讯已更新');
+          }, 1200);
+        });
+      }
+
+      // Extract all button
+      const extractBtn = document.getElementById('extractBtn');
+      if (extractBtn) {
+        extractBtn.addEventListener('click', () => {
+          extractBtn.innerHTML = '<span class="spin">⏳</span><span>提炼中...</span>';
+          showToast('AI 正在提炼全部要点...');
+          setTimeout(() => {
+            extractBtn.innerHTML = '<span>✨</span><span>一键提炼全部要点</span>';
+            showToast('全部要点提炼完成');
+          }, 2000);
+        });
+      }
+
+      // Re-extract button
+      const reExtractBtn = document.getElementById('reExtractBtn');
+      if (reExtractBtn) {
+        reExtractBtn.addEventListener('click', () => {
+          reExtractBtn.querySelector('span:first-child').classList.add('spin');
+          showToast('重新提炼中...');
+          setTimeout(() => {
+            reExtractBtn.querySelector('span:first-child').classList.remove('spin');
+            showToast('要点已更新');
+          }, 1000);
+        });
+      }
+
+      // Save to notes button
+      const saveToNotesBtn = document.getElementById('saveToNotesBtn');
+      if (saveToNotesBtn) {
+        saveToNotesBtn.addEventListener('click', () => {
+          const currentLabel = document.getElementById('currentTagLabel').textContent;
+          const items = Array.from(document.querySelectorAll('#summaryBody li')).map(li => li.textContent);
+          openSaveModal(currentLabel, items);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
