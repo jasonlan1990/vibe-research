@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>接入AI - Vibe-Research</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">📈</div>
+        <div class="brand-text">
+          <h1>Vibe-Research</h1>
+          <p>普通人的AI投研系统</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="daily-review.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">每日复盘</span>
+        </a>
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">📡</span>
+          <span class="nav-label">资讯雷达</span>
+        </a>
+        <div class="nav-item" style="cursor: default;">
+          <span class="nav-icon">🗂️</span>
+          <span class="nav-label">板块中心</span>
+        </div>
+        <div class="sub-nav">
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-label">人形机器人</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-label">AI 算力</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">HBM</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🔌</span>
+            <span class="nav-label">光互联</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-label">商业航天</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💊</span>
+            <span class="nav-label">生物医药</span>
+          </a>
+        </div>
+        <a href="stock-data.html" class="nav-item">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label">个股数据</span>
+        </a>
+        <a href="portfolio.html" class="nav-item">
+          <span class="nav-icon">💼</span>
+          <span class="nav-label">我的持仓</span>
+        </a>
+        <a href="research-notes.html" class="nav-item">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">研究记录</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item active">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">接入AI</span>
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="theme-toggle">
+          <span>🌞</span>
+          <span>亮色</span>
+        </div>
+        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h2>接入AI</h2>
+        <p>与AI投研助手对话，获取深度分析</p>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-message ai">
+            <div class="avatar">🤖</div>
+            <div class="bubble">
+              <p>你好！我是 Vibe-Research 的 AI 投研助手。</p>
+              <p style="margin-top: 8px;">我可以帮你：</p>
+              <ul style="padding-left: 16px; margin-top: 6px;">
+                <li>分析个股基本面与估值</li>
+                <li>解读行业趋势与政策影响</li>
+                <li>复盘今日市场热点</li>
+                <li>诊断你的持仓组合</li>
+                <li>回答任何投资研究问题</li>
+              </ul>
+              <p style="margin-top: 8px;">有什么我可以帮你的吗？（当前为演示模式，AI回复为模拟内容）</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <div class="chat-input-wrapper">
+            <textarea class="chat-input" id="chatInput" placeholder="输入你的问题，如：帮我分析一下中际旭创的估值..." rows="1"></textarea>
+            <button class="chat-send-btn" id="sendBtn">➤</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Simple chat demo logic
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const chatMessages = document.getElementById('chatMessages');
+
+    const demoResponses = [
+      "这是一个很好的问题。从当前市场来看，AI算力产业链依然是确定性最高的赛道，但需要关注估值泡沫风险。",
+      "从技术面分析，该股票目前处于上升通道，但MACD出现顶背离信号，短期可能有回调压力。",
+      "根据最新的财报数据，该公司营收同比增长45%，净利润增长62%，业绩表现优异。但应收账款周转天数有所增加，需关注现金流质量。",
+      "从估值角度看，当前PE为38倍，处于历史中枢偏上位置。若后续业绩增速维持在50%以上，当前估值合理。",
+      "建议关注以下几个风险点：1）行业竞争加剧；2）海外政策不确定性；3）原材料价格波动。",
+    ];
+
+    function addMessage(text, isUser) {
+      const msg = document.createElement('div');
+      msg.className = 'chat-message ' + (isUser ? 'user' : 'ai');
+      msg.innerHTML = `
+        <div class="avatar">${isUser ? '👤' : '🤖'}</div>
+        <div class="bubble">${text}</div>
+      `;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      addMessage(text, true);
+      chatInput.value = '';
+      chatInput.style.height = '24px';
+
+      setTimeout(() => {
+        const response = demoResponses[Math.floor(Math.random() * demoResponses.length)];
+        addMessage(response, false);
+      }, 800 + Math.random() * 1000);
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+    chatInput.addEventListener('input', () => {
+      chatInput.style.height = 'auto';
+      chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+    });
+  </script>
+</body>
+</html>
