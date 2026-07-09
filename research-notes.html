@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>研究记录 - Vibe-Research</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">📈</div>
+        <div class="brand-text">
+          <h1>Vibe-Research</h1>
+          <p>普通人的AI投研系统</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="daily-review.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">每日复盘</span>
+        </a>
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">📡</span>
+          <span class="nav-label">资讯雷达</span>
+        </a>
+        <div class="nav-item" style="cursor: default;">
+          <span class="nav-icon">🗂️</span>
+          <span class="nav-label">板块中心</span>
+        </div>
+        <div class="sub-nav">
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-label">人形机器人</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-label">AI 算力</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">HBM</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🔌</span>
+            <span class="nav-label">光互联</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-label">商业航天</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💊</span>
+            <span class="nav-label">生物医药</span>
+          </a>
+        </div>
+        <a href="stock-data.html" class="nav-item">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label">个股数据</span>
+        </a>
+        <a href="portfolio.html" class="nav-item">
+          <span class="nav-icon">💼</span>
+          <span class="nav-label">我的持仓</span>
+        </a>
+        <a href="research-notes.html" class="nav-item active">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">研究记录</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">接入AI</span>
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="theme-toggle">
+          <span>🌞</span>
+          <span>亮色</span>
+        </div>
+        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h2>研究记录</h2>
+        <p>沉淀你的研究思考，构建知识体系</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="title-icon">➕</span>
+            <span>新建笔记</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <input type="text" class="stock-search-input" placeholder="笔记标题" style="margin-bottom: 12px;">
+          <textarea class="stock-search-input" placeholder="记录你的研究思考..." rows="4" style="margin-bottom: 12px; resize: vertical;"></textarea>
+          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <span class="btn-tag tag-orange" style="cursor: default;">
+              <span class="tag-dot"></span>
+              <span>AI / 大模型</span>
+            </span>
+            <span class="btn-tag tag-cyan" style="cursor: default;">
+              <span class="tag-dot"></span>
+              <span>半导体</span>
+            </span>
+            <span class="btn-tag tag-green" style="cursor: default;">
+              <span class="tag-dot"></span>
+              <span>新能源</span>
+            </span>
+          </div>
+          <button class="btn btn-primary">💾 保存笔记</button>
+        </div>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-card">
+          <div class="note-card-header">
+            <div class="note-card-title">AI算力产业链深度调研</div>
+            <div class="note-card-date">2026-07-05</div>
+          </div>
+          <div class="note-card-tags">
+            <span class="btn-tag tag-orange" style="cursor: default; padding: 2px 8px; font-size: 11px;">
+              <span class="tag-dot"></span>AI / 大模型
+            </span>
+            <span class="btn-tag tag-cyan" style="cursor: default; padding: 2px 8px; font-size: 11px;">
+              <span class="tag-dot"></span>半导体 / 芯片
+            </span>
+          </div>
+          <div class="note-card-excerpt">
+            对光模块、AI芯片、服务器产业链进行了系统梳理。核心发现：1）800G光模块需求确定性高，2026年出货量预计翻倍；2）国产AI芯片替代加速，海光、寒武纪等厂商技术迭代明显；3）服务器ODM厂商受益于AI服务器放量...
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-card-header">
+            <div class="note-card-title">宁德时代Q2业绩前瞻</div>
+            <div class="note-card-date">2026-07-03</div>
+          </div>
+          <div class="note-card-tags">
+            <span class="btn-tag tag-pink" style="cursor: default; padding: 2px 8px; font-size: 11px;">
+              <span class="tag-dot"></span>汽车 / 新能源车
+            </span>
+            <span class="btn-tag tag-lime" style="cursor: default; padding: 2px 8px; font-size: 11px;">
+              <span class="tag-dot"></span>能源 / 新能源
+            </span>
+          </div>
+          <div class="note-card-excerpt">
+            预计Q2营收约850亿元，同比增长12%，环比持平。毛利率有望维持在22%左右。关注要点：1）欧洲订单交付节奏；2）储能业务占比提升；3）固态电池进展。短期承压但中长期逻辑未变，185元附近可考虑加仓...
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-card-header">
+            <div class="note-card-title">人形机器人赛道梳理</div>
+            <div class="note-card-date">2026-07-01</div>
+          </div>
+          <div class="note-card-tags">
+            <span class="btn-tag" style="cursor: default; padding: 2px 8px; font-size: 11px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--text-secondary);">
+              <span class="tag-dot" style="background: var(--text-muted);"></span>🤖 人形机器人
+            </span>
+          </div>
+          <div class="note-card-excerpt">
+            梳理了特斯拉Optimus、Figure AI、优必选、宇树科技等主流厂商进展。核心结论：1）2026-2027年将是量产元年，供应链确定性高；2）减速器、丝杠、传感器是三大核心零部件；3）A股相关标的估值偏高，建议关注回调机会...
+          </div>
+        </div>
+
+        <div class="note-card">
+          <div class="note-card-header">
+            <div class="note-card-title">美联储政策对A股影响分析</div>
+            <div class="note-card-date">2026-06-28</div>
+          </div>
+          <div class="note-card-tags">
+            <span class="btn-tag tag-yellow" style="cursor: default; padding: 2px 8px; font-size: 11px;">
+              <span class="tag-dot"></span>财经 / 宏观
+            </span>
+          </div>
+          <div class="note-card-excerpt">
+            美联储7月利率决议前瞻：市场预期维持利率不变，但关注点阵图指引。对A股影响：1）若释放鸽派信号，北向资金有望回流，利好核心资产；2）人民币汇率压力缓解，利好外资重仓股；3）若偏鹰，高估值科技板块可能承压...
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
