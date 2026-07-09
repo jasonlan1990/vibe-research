@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资讯雷达 - Vibe-Research</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">📈</div>
+        <div class="brand-text">
+          <h1>Vibe-Research</h1>
+          <p>普通人的AI投研系统</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="daily-review.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">每日复盘</span>
+        </a>
+        <a href="index.html" class="nav-item active">
+          <span class="nav-icon">📡</span>
+          <span class="nav-label">资讯雷达</span>
+        </a>
+        <div class="nav-item" style="cursor: default;">
+          <span class="nav-icon">🗂️</span>
+          <span class="nav-label">板块中心</span>
+        </div>
+        <div class="sub-nav">
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-label">人形机器人</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-label">AI 算力</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">HBM</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🔌</span>
+            <span class="nav-label">光互联</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-label">商业航天</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💊</span>
+            <span class="nav-label">生物医药</span>
+          </a>
+        </div>
+        <a href="stock-data.html" class="nav-item">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label">个股数据</span>
+        </a>
+        <a href="portfolio.html" class="nav-item">
+          <span class="nav-icon">💼</span>
+          <span class="nav-label">我的持仓</span>
+        </a>
+        <a href="research-notes.html" class="nav-item">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">研究记录</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">接入AI</span>
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="theme-toggle">
+          <span>🌞</span>
+          <span>亮色</span>
+        </div>
+        <div class="author-info">
+          联系作者：<a href="#">simonlin.net</a>
+        </div>
+        <div class="disclaimer">
+          v0.1.0 · 不荐股 · 不预测 · 无倾向
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h2>资讯雷达</h2>
+        <p>多来源资讯中心：AI 帮你跨源捞资讯、提炼要点</p>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <button class="tab-btn">
+          <span class="tab-icon">📉</span>
+          <span>事件概率</span>
+        </button>
+        <button class="tab-btn">
+          <span class="tab-icon">📋</span>
+          <span>A股公告</span>
+        </button>
+        <button class="tab-btn">
+          <span class="tab-icon">📰</span>
+          <span>公开新闻</span>
+        </button>
+        <button class="tab-btn active">
+          <span class="tab-icon">📡</span>
+          <span>Investment News</span>
+          <span class="btn-tag" style="margin-left:4px;padding:1px 6px;font-size:10px;">集成</span>
+        </button>
+      </div>
+
+      <!-- Card: Investment News Feed -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="title-icon">📡</span>
+            <span>Investment News</span>
+            <span class="btn-tag" style="margin-left:8px;padding:2px 8px;font-size:11px;">investment-news</span>
+          </div>
+        </div>
+
+        <div class="info-bar">
+          <div class="info-left">
+            <span>108 个公开源 · 近 7 天</span>
+            <span>·</span>
+            <span>更新于 2026-07-05 10:13</span>
+          </div>
+          <div class="info-right">
+            <button class="btn btn-primary" id="extractBtn">
+              <span>✨</span>
+              <span>一键提炼全部要点</span>
+            </button>
+            <button class="btn btn-outline" id="refreshBtn">
+              <span>🔄</span>
+              <span>刷新</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tag Cloud -->
+        <div class="tag-cloud" id="tagCloud">
+          <button class="btn-tag tag-orange active" data-tag="ai">
+            <span class="tag-dot"></span>
+            <span>AI / 大模型</span>
+            <span class="tag-count">71</span>
+          </button>
+          <button class="btn-tag tag-cyan" data-tag="semiconductor">
+            <span class="tag-dot"></span>
+            <span>半导体 / 芯片</span>
+            <span class="tag-count">46</span>
+          </button>
+          <button class="btn-tag tag-green" data-tag="robot">
+            <span class="tag-dot"></span>
+            <span>机器人 / 自动化</span>
+            <span class="tag-count">23</span>
+          </button>
+          <button class="btn-tag tag-pink" data-tag="car">
+            <span class="tag-dot"></span>
+            <span>汽车 / 新能源车</span>
+            <span class="tag-count">28</span>
+          </button>
+          <button class="btn-tag tag-lime" data-tag="energy">
+            <span class="tag-dot"></span>
+            <span>能源 / 新能源</span>
+            <span class="tag-count">54</span>
+          </button>
+          <button class="btn-tag tag-pink" data-tag="biotech">
+            <span class="tag-dot"></span>
+            <span>生物医药 / 健康</span>
+            <span class="tag-count">30</span>
+          </button>
+          <button class="btn-tag tag-purple" data-tag="space">
+            <span class="tag-dot"></span>
+            <span>航天 / 太空</span>
+            <span class="tag-count">36</span>
+          </button>
+          <button class="btn-tag tag-red" data-tag="security">
+            <span class="tag-dot"></span>
+            <span>网络安全</span>
+            <span class="tag-count">25</span>
+          </button>
+          <button class="btn-tag tag-blue" data-tag="tech">
+            <span class="tag-dot"></span>
+            <span>科技 / 互联网</span>
+            <span class="tag-count">91</span>
+          </button>
+          <button class="btn-tag tag-purple" data-tag="consumer">
+            <span class="tag-dot"></span>
+            <span>消费电子 / 数码</span>
+            <span class="tag-count">42</span>
+          </button>
+          <button class="btn-tag tag-yellow" data-tag="finance">
+            <span class="tag-dot"></span>
+            <span>财经 / 宏观</span>
+            <span class="tag-count">62</span>
+          </button>
+          <button class="btn-tag tag-sky" data-tag="science">
+            <span class="tag-dot"></span>
+            <span>科学 / 前沿</span>
+            <span class="tag-count">45</span>
+          </button>
+        </div>
+
+        <!-- AI Summary Section -->
+        <div class="ai-summary" id="aiSummary">
+          <div class="refresh-btn" id="reExtractBtn">
+            <span>🔄</span>
+            <span>重新提炼</span>
+          </div>
+          <div class="ai-summary-header">
+            <div class="ai-summary-title">
+              <span class="summary-icon">🔮</span>
+              <span>今日要点</span>
+              <span>·</span>
+              <span id="currentTagLabel">AI / 大模型</span>
+            </div>
+          </div>
+          <ul class="ai-summary-body" id="summaryBody">
+            <li>阿里巴巴禁止员工使用Claude Code，企业AI工具管控趋严。</li>
+            <li>Anthropic推出Claude Science Beta，多智能体AI工作台赋能科学研究。</li>
+            <li>NVIDIA发布ASPIRE机器人框架，零样本任务性能达31%。</li>
+            <li>GPT-5.6三大模型传闻定档7月7日，或引行业关注。</li>
+            <li>光象科技完成数亿元天使轮融资，布局物理原生基座模型。</li>
+          </ul>
+          <div class="ai-summary-actions">
+            <button class="ai-summary-btn" id="saveToNotesBtn">
+              <span>💾</span>
+              <span>存入沉淀</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- News List -->
+        <div class="news-list" id="newsList">
+          <div class="news-item">
+            <span class="news-time">07-05 04:55</span>
+            <span class="news-source">TechCrunch...</span>
+            <span class="news-title">New Google commercial imagines a Declaration of Independence written with help from AI</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-05 02:00</span>
+            <span class="news-source">TechCrunch...</span>
+            <span class="news-title">Midjourney wants Hollywood studios to reveal the details of their AI usage</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-05 00:32</span>
+            <span class="news-source">TechCrunch...</span>
+            <span class="news-title">Alibaba reportedly bans employees from using Claude Code</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-05 00:21</span>
+            <span class="news-source">MarkTechP...</span>
+            <span class="news-title">Anthropic Launches Claude Science Beta: A Multi-Agent AI Workbench for Reproducible Genomics, Proteomics, and Cheminformatics Pipelines</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-05 00:04</span>
+            <span class="news-source">MarkTechP...</span>
+            <span class="news-title">NVIDIA HORIZON: A Hands-Free Agent that Evolves Git Worktrees and Hits 100% RTL Benchmark Completion</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-04 23:45</span>
+            <span class="news-source">Reuters</span>
+            <span class="news-title">OpenAI reportedly delays GPT-5.6 release to July 7 amid technical challenges</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-04 22:30</span>
+            <span class="news-source">36Kr</span>
+            <span class="news-title">光象科技完成数亿元天使轮融资，红杉中国、真格基金联合领投</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-04 21:15</span>
+            <span class="news-source">Bloomberg</span>
+            <span class="news-title">Microsoft expands AI infrastructure in Asia-Pacific with $3 billion investment</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-04 20:00</span>
+            <span class="news-source">TechCrunch...</span>
+            <span class="news-title">Google's new AI assistant can now browse the web and book flights for you</span>
+          </div>
+          <div class="news-item">
+            <span class="news-time">07-04 18:30</span>
+            <span class="news-source">The Verge</span>
+            <span class="news-title">Apple Intelligence delayed to iOS 18.1, missing initial launch window</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

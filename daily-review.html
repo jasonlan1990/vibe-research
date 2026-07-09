@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日复盘 - Vibe-Research</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">📈</div>
+        <div class="brand-text">
+          <h1>Vibe-Research</h1>
+          <p>普通人的AI投研系统</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="daily-review.html" class="nav-item active">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">每日复盘</span>
+        </a>
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">📡</span>
+          <span class="nav-label">资讯雷达</span>
+        </a>
+        <div class="nav-item" style="cursor: default;">
+          <span class="nav-icon">🗂️</span>
+          <span class="nav-label">板块中心</span>
+        </div>
+        <div class="sub-nav">
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-label">人形机器人</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-label">AI 算力</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">HBM</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🔌</span>
+            <span class="nav-label">光互联</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-label">商业航天</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💊</span>
+            <span class="nav-label">生物医药</span>
+          </a>
+        </div>
+        <a href="stock-data.html" class="nav-item">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label">个股数据</span>
+        </a>
+        <a href="portfolio.html" class="nav-item">
+          <span class="nav-icon">💼</span>
+          <span class="nav-label">我的持仓</span>
+        </a>
+        <a href="research-notes.html" class="nav-item">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">研究记录</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">接入AI</span>
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="theme-toggle">
+          <span>🌞</span>
+          <span>亮色</span>
+        </div>
+        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h2>每日复盘</h2>
+        <p>AI 帮你总结今日市场全貌，提炼核心要点</p>
+      </div>
+
+      <!-- Market Overview Stats -->
+      <div class="review-grid">
+        <div class="review-stat-card">
+          <div class="stat-label">上证指数</div>
+          <div class="stat-value up">3,287.45</div>
+          <div class="stat-change up">+0.58% +18.92</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">深证成指</div>
+          <div class="stat-value down">10,245.30</div>
+          <div class="stat-change down">-0.32% -32.78</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">创业板指</div>
+          <div class="stat-value up">2,145.67</div>
+          <div class="stat-change up">+1.24% +26.30</div>
+        </div>
+      </div>
+
+      <!-- AI Market Summary -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="title-icon">🔮</span>
+            <span>AI 市场复盘</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-ghost">🔄 重新生成</button>
+          </div>
+        </div>
+        <div class="card-body" style="line-height: 2;">
+          <ul style="padding-left: 0; list-style: none;">
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary);">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>今日A股三大指数分化，沪指收红涨0.58%，深成指微跌0.32%，创业板指领涨1.24%，市场呈现结构性行情。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>AI板块持续强势，半导体、光模块等算力产业链全面爆发，多只个股涨停，资金抱团明显。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>北向资金今日净流入28.5亿元，外资对A股核心资产态度偏积极，重点关注科技板块。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>今日成交额约1.2万亿，较昨日放量12%，市场活跃度提升，但高位股出现分化迹象。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>明日关注：美联储会议纪要、国内6月CPI数据发布，宏观数据或影响短期市场情绪。</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Sector Heat Map -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="title-icon">🔥</span>
+            <span>板块热度</span>
+          </div>
+        </div>
+        <div class="review-chart-placeholder">
+          <span style="font-size: 48px; opacity: 0.3;">📊</span>
+          <span>板块热力图（演示版）</span>
+          <span style="font-size: 12px; opacity: 0.5;">集成 ECharts 后可展示真实板块涨跌热力图</span>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
