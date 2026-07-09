@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个股数据 - Vibe-Research</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">📈</div>
+        <div class="brand-text">
+          <h1>Vibe-Research</h1>
+          <p>普通人的AI投研系统</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="daily-review.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">每日复盘</span>
+        </a>
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">📡</span>
+          <span class="nav-label">资讯雷达</span>
+        </a>
+        <div class="nav-item" style="cursor: default;">
+          <span class="nav-icon">🗂️</span>
+          <span class="nav-label">板块中心</span>
+        </div>
+        <div class="sub-nav">
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-label">人形机器人</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-label">AI 算力</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">HBM</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🔌</span>
+            <span class="nav-label">光互联</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-label">商业航天</span>
+          </a>
+          <a href="sector-center.html" class="nav-item">
+            <span class="nav-icon">💊</span>
+            <span class="nav-label">生物医药</span>
+          </a>
+        </div>
+        <a href="stock-data.html" class="nav-item active">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label">个股数据</span>
+        </a>
+        <a href="portfolio.html" class="nav-item">
+          <span class="nav-icon">💼</span>
+          <span class="nav-label">我的持仓</span>
+        </a>
+        <a href="research-notes.html" class="nav-item">
+          <span class="nav-icon">📝</span>
+          <span class="nav-label">研究记录</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">接入AI</span>
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="theme-toggle">
+          <span>🌞</span>
+          <span>亮色</span>
+        </div>
+        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h2>个股数据</h2>
+        <p>查询个股行情、财务与AI分析</p>
+      </div>
+
+      <div class="stock-search-bar">
+        <input type="text" class="stock-search-input" placeholder="输入股票代码或名称，如 300308 或 中际旭创">
+        <button class="btn btn-primary">🔍 搜索</button>
+      </div>
+
+      <div class="stock-detail-grid">
+        <div class="stock-price-card">
+          <div class="stock-name">中际旭创</div>
+          <div class="stock-code">300308.SZ</div>
+          <div class="stock-price up">142.80</div>
+          <div class="stock-change up">+5.62 (+4.10%)</div>
+          <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 12px;">
+            <div style="text-align: center;">
+              <div style="color: var(--text-muted); margin-bottom: 4px;">今开</div>
+              <div style="font-weight: 600; font-family: monospace;">137.20</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="color: var(--text-muted); margin-bottom: 4px;">最高</div>
+              <div style="font-weight: 600; font-family: monospace; color: var(--accent-red);">145.00</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="color: var(--text-muted); margin-bottom: 4px;">最低</div>
+              <div style="font-weight: 600; font-family: monospace; color: var(--accent-green);">136.50</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="color: var(--text-muted); margin-bottom: 4px;">成交量</div>
+              <div style="font-weight: 600; font-family: monospace;">28.5万</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 0;">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="title-icon">📈</span>
+              <span>K线预览</span>
+            </div>
+          </div>
+          <div class="review-chart-placeholder" style="height: 200px; border: none; border-radius: 0; padding: 0;">
+            <span style="font-size: 36px; opacity: 0.3;">📊</span>
+            <span>实时K线图（演示版）</span>
+            <span style="font-size: 12px; opacity: 0.5;">集成 ECharts 后可展示真实K线</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="title-icon">🔮</span>
+            <span>AI 个股分析</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-ghost">🔄 重新分析</button>
+          </div>
+        </div>
+        <div class="card-body" style="line-height: 2;">
+          <ul style="padding-left: 0; list-style: none;">
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary);">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>中际旭创作为国内光模块龙头，深度受益于AI算力需求爆发，800G产品放量带动业绩高增。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>2026Q1营收同比增长145%，净利润增长187%，毛利率提升至35.2%，盈利能力持续改善。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>估值方面，当前PE约45倍，处于历史中高位，需关注后续业绩增速能否匹配估值。</span>
+            </li>
+            <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
+              <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
+              <span>风险点：海外大客户订单波动、行业竞争加剧、技术迭代风险。</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
