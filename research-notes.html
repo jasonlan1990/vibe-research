@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>研究记录 - Vibe-Research</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .notes-list { display: flex; flex-direction: column; gap: 12px; }
+    .note-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 16px 20px; transition: var(--transition); cursor: pointer; }
+    .note-card:hover { border-color: var(--border-light); }
+    .note-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .note-card-title { font-size: 15px; font-weight: 600; }
+    .note-card-date { font-size: 12px; color: var(--text-muted); }
+    .note-card-tags { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+    .note-card-excerpt { font-size: 13px; color: var(--text-secondary); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .note-card-full { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); display: none; }
+    .note-card.expanded .note-card-excerpt { display: none; }
+    .note-card.expanded .note-card-full { display: block; }
+    .note-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .note-actions button { font-size: 12px; padding: 4px 10px; }
+    .new-note-form input, .new-note-form textarea { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 14px; color: var(--text-primary); font-family: inherit; font-size: 14px; margin-bottom: 12px; outline: none; }
+    .new-note-form textarea { resize: vertical; min-height: 100px; }
+    .tag-selector { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .tag-selector .btn-tag { cursor: pointer; }
+    .tag-selector .btn-tag.selected { background: var(--tag-bg); border-color: var(--tag-border); color: var(--accent-orange-light); }
+  </style>
 </head>
 <body>
   <div class="app-container">
@@ -95,95 +115,118 @@
             <span>新建笔记</span>
           </div>
         </div>
-        <div class="card-body">
-          <input type="text" class="stock-search-input" placeholder="笔记标题" style="margin-bottom: 12px;">
-          <textarea class="stock-search-input" placeholder="记录你的研究思考..." rows="4" style="margin-bottom: 12px; resize: vertical;"></textarea>
-          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-            <span class="btn-tag tag-orange" style="cursor: default;">
-              <span class="tag-dot"></span>
-              <span>AI / 大模型</span>
-            </span>
-            <span class="btn-tag tag-cyan" style="cursor: default;">
-              <span class="tag-dot"></span>
-              <span>半导体</span>
-            </span>
-            <span class="btn-tag tag-green" style="cursor: default;">
-              <span class="tag-dot"></span>
-              <span>新能源</span>
-            </span>
+        <div class="card-body new-note-form">
+          <input type="text" id="noteTitle" placeholder="笔记标题">
+          <textarea id="noteContent" placeholder="记录你的研究思考..."></textarea>
+          <div class="tag-selector" id="tagSelector">
+            <span class="btn-tag tag-orange" data-tag="AI / 大模型"><span class="tag-dot"></span>AI / 大模型</span>
+            <span class="btn-tag tag-cyan" data-tag="半导体 / 芯片"><span class="tag-dot"></span>半导体 / 芯片</span>
+            <span class="btn-tag tag-green" data-tag="新能源"><span class="tag-dot"></span>新能源</span>
+            <span class="btn-tag tag-pink" data-tag="汽车 / 新能源车"><span class="tag-dot"></span>汽车 / 新能源车</span>
+            <span class="btn-tag tag-lime" data-tag="机器人 / 自动化"><span class="tag-dot"></span>机器人 / 自动化</span>
+            <span class="btn-tag tag-purple" data-tag="生物医药"><span class="tag-dot"></span>生物医药</span>
+            <span class="btn-tag tag-yellow" data-tag="财经 / 宏观"><span class="tag-dot"></span>财经 / 宏观</span>
+            <span class="btn-tag tag-blue" data-tag="科技 / 互联网"><span class="tag-dot"></span>科技 / 互联网</span>
           </div>
-          <button class="btn btn-primary">💾 保存笔记</button>
+          <button class="btn btn-primary" onclick="saveNote()">💾 保存笔记</button>
         </div>
       </div>
 
-      <div class="notes-list">
-        <div class="note-card">
-          <div class="note-card-header">
-            <div class="note-card-title">AI算力产业链深度调研</div>
-            <div class="note-card-date">2026-07-05</div>
-          </div>
-          <div class="note-card-tags">
-            <span class="btn-tag tag-orange" style="cursor: default; padding: 2px 8px; font-size: 11px;">
-              <span class="tag-dot"></span>AI / 大模型
-            </span>
-            <span class="btn-tag tag-cyan" style="cursor: default; padding: 2px 8px; font-size: 11px;">
-              <span class="tag-dot"></span>半导体 / 芯片
-            </span>
-          </div>
-          <div class="note-card-excerpt">
-            对光模块、AI芯片、服务器产业链进行了系统梳理。核心发现：1）800G光模块需求确定性高，2026年出货量预计翻倍；2）国产AI芯片替代加速，海光、寒武纪等厂商技术迭代明显；3）服务器ODM厂商受益于AI服务器放量...
-          </div>
-        </div>
-
-        <div class="note-card">
-          <div class="note-card-header">
-            <div class="note-card-title">宁德时代Q2业绩前瞻</div>
-            <div class="note-card-date">2026-07-03</div>
-          </div>
-          <div class="note-card-tags">
-            <span class="btn-tag tag-pink" style="cursor: default; padding: 2px 8px; font-size: 11px;">
-              <span class="tag-dot"></span>汽车 / 新能源车
-            </span>
-            <span class="btn-tag tag-lime" style="cursor: default; padding: 2px 8px; font-size: 11px;">
-              <span class="tag-dot"></span>能源 / 新能源
-            </span>
-          </div>
-          <div class="note-card-excerpt">
-            预计Q2营收约850亿元，同比增长12%，环比持平。毛利率有望维持在22%左右。关注要点：1）欧洲订单交付节奏；2）储能业务占比提升；3）固态电池进展。短期承压但中长期逻辑未变，185元附近可考虑加仓...
-          </div>
-        </div>
-
-        <div class="note-card">
-          <div class="note-card-header">
-            <div class="note-card-title">人形机器人赛道梳理</div>
-            <div class="note-card-date">2026-07-01</div>
-          </div>
-          <div class="note-card-tags">
-            <span class="btn-tag" style="cursor: default; padding: 2px 8px; font-size: 11px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--text-secondary);">
-              <span class="tag-dot" style="background: var(--text-muted);"></span>🤖 人形机器人
-            </span>
-          </div>
-          <div class="note-card-excerpt">
-            梳理了特斯拉Optimus、Figure AI、优必选、宇树科技等主流厂商进展。核心结论：1）2026-2027年将是量产元年，供应链确定性高；2）减速器、丝杠、传感器是三大核心零部件；3）A股相关标的估值偏高，建议关注回调机会...
-          </div>
-        </div>
-
-        <div class="note-card">
-          <div class="note-card-header">
-            <div class="note-card-title">美联储政策对A股影响分析</div>
-            <div class="note-card-date">2026-06-28</div>
-          </div>
-          <div class="note-card-tags">
-            <span class="btn-tag tag-yellow" style="cursor: default; padding: 2px 8px; font-size: 11px;">
-              <span class="tag-dot"></span>财经 / 宏观
-            </span>
-          </div>
-          <div class="note-card-excerpt">
-            美联储7月利率决议前瞻：市场预期维持利率不变，但关注点阵图指引。对A股影响：1）若释放鸽派信号，北向资金有望回流，利好核心资产；2）人民币汇率压力缓解，利好外资重仓股；3）若偏鹰，高估值科技板块可能承压...
-          </div>
-        </div>
-      </div>
+      <div class="notes-list" id="notesList"></div>
     </main>
   </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/main.js"></script>
+  <script>
+    const defaultNotes = [
+      { id: 1, title: 'AI算力产业链深度调研', content: '对光模块、AI芯片、服务器产业链进行了系统梳理。核心发现：1）800G光模块需求确定性高，2026年出货量预计翻倍；2）国产AI芯片替代加速，海光、寒武纪等厂商技术迭代明显；3）服务器ODM厂商受益于AI服务器放量。重点关注中际旭创、新易盛、海光信息。', date: '2026-07-05', tags: ['AI / 大模型', '半导体 / 芯片'] },
+      { id: 2, title: '宁德时代Q2业绩前瞻', content: '预计Q2营收约980亿元，同比增长15%，环比持平。毛利率有望维持在23%左右。关注要点：1）欧洲订单交付节奏；2）储能业务占比提升；3）凝聚态电池进展。短期承压但中长期逻辑未变，360元附近可考虑加仓。', date: '2026-07-03', tags: ['新能源', '汽车 / 新能源车'] },
+      { id: 3, title: '人形机器人赛道梳理', content: '梳理了特斯拉Optimus、Figure AI、优必选、宇树科技等主流厂商进展。核心结论：1）2026-2027年将是量产元年，供应链确定性高；2）减速器、丝杠、传感器是三大核心零部件；3）A股相关标的估值偏高，建议关注回调机会。', date: '2026-07-01', tags: ['机器人 / 自动化'] },
+      { id: 4, title: '美联储政策对A股影响分析', content: '美联储7月利率决议前瞻：市场预期维持利率不变，但关注点阵图指引。对A股影响：1）若释放鸽派信号，北向资金有望回流，利好核心资产；2）人民币汇率压力缓解，利好外资重仓股；3）若偏鹰，高估值科技板块可能承压。', date: '2026-06-28', tags: ['财经 / 宏观'] },
+    ];
+
+    let selectedTags = new Set();
+
+    function getNotes() {
+      const raw = localStorage.getItem('researchNotes');
+      if (raw) return JSON.parse(raw);
+      localStorage.setItem('researchNotes', JSON.stringify(defaultNotes));
+      return defaultNotes;
+    }
+
+    function saveNotes(data) {
+      localStorage.setItem('researchNotes', JSON.stringify(data));
+    }
+
+    function renderNotes() {
+      const data = getNotes();
+      const container = document.getElementById('notesList');
+      container.innerHTML = data.map(note => {
+        const tagHtml = note.tags.map(t => {
+          const colors = {
+            'AI / 大模型': 'tag-orange', '半导体 / 芯片': 'tag-cyan', '新能源': 'tag-green',
+            '汽车 / 新能源车': 'tag-pink', '机器人 / 自动化': 'tag-lime', '生物医药': 'tag-purple',
+            '财经 / 宏观': 'tag-yellow', '科技 / 互联网': 'tag-blue'
+          };
+          const cls = colors[t] || '';
+          return '<span class="btn-tag ' + cls + '" style="cursor:default;padding:2px 8px;font-size:11px;"><span class="tag-dot"></span>' + t + '</span>';
+        }).join('');
+        return '<div class="note-card" data-id="' + note.id + '" onclick="toggleNote(' + note.id + ')">' +
+          '<div class="note-card-header"><div class="note-card-title">' + note.title + '</div><div class="note-card-date">' + note.date + '</div></div>' +
+          '<div class="note-card-tags">' + tagHtml + '</div>' +
+          '<div class="note-card-excerpt">' + note.content + '</div>' +
+          '<div class="note-card-full">' + note.content.replace(/\n/g, '<br>') +
+          '<div class="note-actions"><button class="btn btn-ghost" onclick="event.stopPropagation(); deleteNote(' + note.id + ')">🗑️ 删除</button></div>' +
+          '</div></div>';
+      }).join('');
+    }
+
+    function toggleNote(id) {
+      const card = document.querySelector('.note-card[data-id="' + id + '"]');
+      if (card) card.classList.toggle('expanded');
+    }
+
+    function deleteNote(id) {
+      let data = getNotes();
+      data = data.filter(n => n.id !== id);
+      saveNotes(data);
+      renderNotes();
+      showToast('笔记已删除');
+    }
+
+    function saveNote() {
+      const title = document.getElementById('noteTitle').value.trim();
+      const content = document.getElementById('noteContent').value.trim();
+      if (!title || !content) { showToast('请填写标题和内容'); return; }
+      const data = getNotes();
+      const newNote = {
+        id: Date.now(),
+        title,
+        content,
+        date: new Date().toISOString().slice(0, 10),
+        tags: Array.from(selectedTags)
+      };
+      data.unshift(newNote);
+      saveNotes(data);
+      renderNotes();
+      document.getElementById('noteTitle').value = '';
+      document.getElementById('noteContent').value = '';
+      selectedTags.clear();
+      document.querySelectorAll('#tagSelector .btn-tag').forEach(t => t.classList.remove('selected'));
+      showToast('笔记保存成功');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNotes();
+      document.querySelectorAll('#tagSelector .btn-tag').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tag = btn.dataset.tag;
+          if (selectedTags.has(tag)) { selectedTags.delete(tag); btn.classList.remove('selected'); }
+          else { selectedTags.add(tag); btn.classList.add('selected'); }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
