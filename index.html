@@ -5,22 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>资讯雷达 - Vibe-Research</title>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-card); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: var(--radius-md); font-size: 13px; color: var(--text-secondary); z-index: 1000; opacity: 0; transition: all 0.3s ease; box-shadow: var(--shadow); }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .note-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 999; }
-    .note-modal.show { display: flex; }
-    .note-modal-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; width: 90%; max-width: 480px; }
-    .note-modal-content h3 { margin-bottom: 16px; font-size: 16px; }
-    .note-modal-content input, .note-modal-content textarea { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 14px; color: var(--text-primary); font-family: inherit; font-size: 14px; margin-bottom: 12px; outline: none; }
-    .note-modal-content textarea { resize: vertical; min-height: 80px; }
-    .note-modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
-    .news-item .news-tag { font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--tag-chip); color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
-  </style>
 </head>
 <body>
   <div class="app-container">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="logo-icon">📈</div>
@@ -38,32 +25,44 @@
           <span class="nav-icon">📡</span>
           <span class="nav-label">资讯雷达</span>
         </a>
+        <a href="event-probability.html" class="nav-item">
+          <span class="nav-icon">📉</span>
+          <span class="nav-label">事件概率</span>
+        </a>
+        <a href="a-share-announcements.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">A股公告</span>
+        </a>
+        <a href="public-news.html" class="nav-item">
+          <span class="nav-icon">📰</span>
+          <span class="nav-label">公开新闻</span>
+        </a>
         <div class="nav-item" style="cursor: default;">
           <span class="nav-icon">🗂️</span>
           <span class="nav-label">板块中心</span>
         </div>
         <div class="sub-nav">
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-humanoid.html" class="nav-item">
             <span class="nav-icon">🤖</span>
             <span class="nav-label">人形机器人</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-ai-computing.html" class="nav-item">
             <span class="nav-icon">🧠</span>
             <span class="nav-label">AI 算力</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-hbm.html" class="nav-item">
             <span class="nav-icon">💾</span>
             <span class="nav-label">HBM</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-optical.html" class="nav-item">
             <span class="nav-icon">🔌</span>
             <span class="nav-label">光互联</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-aerospace.html" class="nav-item">
             <span class="nav-icon">🚀</span>
             <span class="nav-label">商业航天</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-biotech.html" class="nav-item">
             <span class="nav-icon">💊</span>
             <span class="nav-label">生物医药</span>
           </a>
@@ -90,38 +89,34 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div>
         <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
-
-    <!-- Main Content -->
     <main class="main-content">
       <div class="page-header">
         <h2>资讯雷达</h2>
         <p>多来源资讯中心：AI 帮你跨源捞资讯、提炼要点</p>
       </div>
-
       <div class="tab-bar">
-        <button class="tab-btn">
+        <a href="event-probability.html" class="tab-btn">
           <span class="tab-icon">📉</span>
           <span>事件概率</span>
-        </button>
-        <button class="tab-btn">
+        </a>
+        <a href="a-share-announcements.html" class="tab-btn">
           <span class="tab-icon">📋</span>
           <span>A股公告</span>
-        </button>
-        <button class="tab-btn">
+        </a>
+        <a href="public-news.html" class="tab-btn">
           <span class="tab-icon">📰</span>
           <span>公开新闻</span>
-        </button>
+        </a>
         <button class="tab-btn active">
           <span class="tab-icon">📡</span>
           <span>Investment News</span>
           <span class="btn-tag" style="margin-left:4px;padding:1px 6px;font-size:10px;">集成</span>
         </button>
       </div>
-
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -130,7 +125,6 @@
             <span class="btn-tag" style="margin-left:8px;padding:2px 8px;font-size:11px;">investment-news</span>
           </div>
         </div>
-
         <div class="info-bar">
           <div class="info-left">
             <span>108 个公开源 · 近 7 天</span>
@@ -148,7 +142,6 @@
             </button>
           </div>
         </div>
-
         <div class="tag-cloud" id="tagCloud">
           <button class="btn-tag tag-orange active" data-tag="ai">
             <span class="tag-dot"></span>
@@ -211,7 +204,6 @@
             <span class="tag-count">45</span>
           </button>
         </div>
-
         <div class="ai-summary" id="aiSummary">
           <div class="refresh-btn" id="reExtractBtn">
             <span>🔄</span>
@@ -239,7 +231,6 @@
             </button>
           </div>
         </div>
-
         <div class="news-list" id="newsList">
           <div class="news-item">
             <span class="news-time">07-09 14:30</span>
@@ -305,9 +296,7 @@
       </div>
     </main>
   </div>
-
   <div class="toast" id="toast"></div>
-
   <div class="note-modal" id="saveNoteModal">
     <div class="note-modal-content">
       <h3>💾 存入研究记录</h3>
@@ -319,12 +308,9 @@
       </div>
     </div>
   </div>
-
   <script src="js/main.js"></script>
   <script>
-    // Index page specific logic
     document.addEventListener('DOMContentLoaded', () => {
-      // Refresh button
       const refreshBtn = document.getElementById('refreshBtn');
       if (refreshBtn) {
         refreshBtn.addEventListener('click', () => {
@@ -336,8 +322,6 @@
           }, 1200);
         });
       }
-
-      // Extract all button
       const extractBtn = document.getElementById('extractBtn');
       if (extractBtn) {
         extractBtn.addEventListener('click', () => {
@@ -349,8 +333,6 @@
           }, 2000);
         });
       }
-
-      // Re-extract button
       const reExtractBtn = document.getElementById('reExtractBtn');
       if (reExtractBtn) {
         reExtractBtn.addEventListener('click', () => {
@@ -362,8 +344,6 @@
           }, 1000);
         });
       }
-
-      // Save to notes button
       const saveToNotesBtn = document.getElementById('saveToNotesBtn');
       if (saveToNotesBtn) {
         saveToNotesBtn.addEventListener('click', () => {
