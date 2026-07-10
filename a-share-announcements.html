@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股公告 - Vibe-Research</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-container">
+<aside class="sidebar">
+  <div class="sidebar-brand"><div class="logo-icon">📈</div><div class="brand-text"><h1>Vibe-Research</h1><p>普通人的AI投研系统</p></div></div>
+  <nav class="sidebar-nav">
+    <a href="daily-review.html" class="nav-item"><span class="nav-icon">📊</span><span class="nav-label">每日复盘</span></a>
+    <a href="index.html" class="nav-item"><span class="nav-icon">📡</span><span class="nav-label">资讯雷达</span></a>
+    <a href="event-probability.html" class="nav-item"><span class="nav-icon">📉</span><span class="nav-label">事件概率</span></a>
+    <a href="a-share-announcements.html" class="nav-item active"><span class="nav-icon">📋</span><span class="nav-label">A股公告</span></a>
+    <a href="public-news.html" class="nav-item"><span class="nav-icon">📰</span><span class="nav-label">公开新闻</span></a>
+    <div class="nav-item" style="cursor:default;"><span class="nav-icon">🗂️</span><span class="nav-label">板块中心</span></div>
+    <div class="sub-nav">
+      <a href="sector-humanoid.html" class="nav-item"><span class="nav-icon">🤖</span><span class="nav-label">人形机器人</span></a>
+      <a href="sector-ai-computing.html" class="nav-item"><span class="nav-icon">🧠</span><span class="nav-label">AI 算力</span></a>
+      <a href="sector-hbm.html" class="nav-item"><span class="nav-icon">💾</span><span class="nav-label">HBM</span></a>
+      <a href="sector-optical.html" class="nav-item"><span class="nav-icon">🔌</span><span class="nav-label">光互联</span></a>
+      <a href="sector-aerospace.html" class="nav-item"><span class="nav-icon">🚀</span><span class="nav-label">商业航天</span></a>
+      <a href="sector-biotech.html" class="nav-item"><span class="nav-icon">💊</span><span class="nav-label">生物医药</span></a>
+    </div>
+    <a href="stock-data.html" class="nav-item"><span class="nav-icon">🔍</span><span class="nav-label">个股数据</span></a>
+    <a href="portfolio.html" class="nav-item"><span class="nav-icon">💼</span><span class="nav-label">我的持仓</span></a>
+    <a href="research-notes.html" class="nav-item"><span class="nav-icon">📝</span><span class="nav-label">研究记录</span></a>
+    <a href="ai-chat.html" class="nav-item"><span class="nav-icon">⚙️</span><span class="nav-label">接入AI</span></a>
+  </nav>
+  <div class="sidebar-bottom"><div class="theme-toggle"><span>🌞</span><span>亮色</span></div><div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div><div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div></div>
+</aside>
+
+<main class="main-content">
+  <div class="page-header"><h2>A股公告</h2><p>聚合上市公司今日公告，AI 提炼核心要点</p></div>
+
+  <div class="tab-bar">
+    <button class="btn-tag active" style="cursor:pointer;">全部</button>
+    <button class="btn-tag" style="cursor:pointer;">业绩预告</button>
+    <button class="btn-tag" style="cursor:pointer;">重大合同</button>
+    <button class="btn-tag" style="cursor:pointer;">股权变动</button>
+    <button class="btn-tag" style="cursor:pointer;">增减持</button>
+    <button class="btn-tag" style="cursor:pointer;">并购重组</button>
+  </div>
+
+  <div class="card">
+    <div class="info-bar"><div class="info-left"><span>今日 32 条公告</span><span>·</span><span>更新于 2026-07-09 15:00</span></div><div class="info-right"><button class="btn btn-primary">✨ AI提炼全部</button></div></div>
+
+    <div class="news-list">
+      <div class="news-item">
+        <span class="news-time">15:00</span>
+        <span class="news-source" style="color:var(--accent-cyan);">业绩预告</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">中际旭创 300308：2026年半年度业绩预告</span><span style="font-size:12px;color:var(--text-muted);">预计上半年净利润28.5-32亿元，同比增长180%-220%，受益于800G光模块放量。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">14:45</span>
+        <span class="news-source" style="color:var(--accent-purple);">重大合同</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">宁德时代 300750：与某头部车企签订战略合作协议</span><span style="font-size:12px;color:var(--text-muted);">协议涉及100GWh动力电池供应，合同金额约1200亿元，履行期限2026-2030年。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">14:30</span>
+        <span class="news-source" style="color:var(--accent-red);">增减持</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">贵州茅台 600519：控股股东增持计划</span><span style="font-size:12px;color:var(--text-muted);">茅台集团计划未来6个月内增持不低于10亿元，彰显对公司长期价值的信心。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">14:15</span>
+        <span class="news-source" style="color:var(--accent-green);">并购重组</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">海光信息 688041：拟收购某国产GPU设计公司</span><span style="font-size:12px;color:var(--text-muted);">交易对价约35亿元，旨在完善DCU产品矩阵，增强AI算力全栈能力。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">13:50</span>
+        <span class="news-source" style="color:var(--accent-cyan);">业绩预告</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">新易盛 300502：2026年半年度业绩预告</span><span style="font-size:12px;color:var(--text-muted);">预计上半年净利润18-20亿元，同比增长250%-280%，1.6T光模块开始批量交付。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">13:30</span>
+        <span class="news-source" style="color:var(--accent-yellow);">股权变动</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">比亚迪 002594：完成回购股份注销</span><span style="font-size:12px;color:var(--text-muted);">公司已完成回购的5000万股股份注销，总股本由29.11亿股减少至28.61亿股。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">12:00</span>
+        <span class="news-source" style="color:var(--accent-purple);">重大合同</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">药明康德 603259：与某跨国药企签订CDMO服务协议</span><span style="font-size:12px;color:var(--text-muted);">协议金额约15亿美元，涵盖小分子药物从临床前到商业化生产的全流程服务。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">11:30</span>
+        <span class="news-source" style="color:var(--accent-cyan);">业绩预告</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">中芯国际 688981：2026年Q2业绩快报</span><span style="font-size:12px;color:var(--text-muted);">Q2营收同比增长28%，毛利率提升至28.5%，产能利用率回升至92%。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">10:45</span>
+        <span class="news-source" style="color:var(--accent-red);">增减持</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">立讯精密 002475：高管减持计划</span><span style="font-size:12px;color:var(--text-muted);">公司5名高管计划合计减持不超过500万股，占总股本0.07%，用于个人资金需求。</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-time">09:30</span>
+        <span class="news-source" style="color:var(--accent-green);">并购重组</span>
+        <span class="news-title" style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;color:var(--text-primary);">通富微电 002156：子公司引入战略投资者</span><span style="font-size:12px;color:var(--text-muted);">国家大基金三期拟向子公司增资20亿元，用于先进封装产能建设。</span></span>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
