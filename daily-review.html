@@ -38,32 +38,44 @@
           <span class="nav-icon">📡</span>
           <span class="nav-label">资讯雷达</span>
         </a>
+        <a href="event-probability.html" class="nav-item">
+          <span class="nav-icon">📉</span>
+          <span class="nav-label">事件概率</span>
+        </a>
+        <a href="a-share-announcements.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">A股公告</span>
+        </a>
+        <a href="public-news.html" class="nav-item">
+          <span class="nav-icon">📰</span>
+          <span class="nav-label">公开新闻</span>
+        </a>
         <div class="nav-item" style="cursor: default;">
           <span class="nav-icon">🗂️</span>
           <span class="nav-label">板块中心</span>
         </div>
         <div class="sub-nav">
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-humanoid.html" class="nav-item">
             <span class="nav-icon">🤖</span>
             <span class="nav-label">人形机器人</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-ai-computing.html" class="nav-item">
             <span class="nav-icon">🧠</span>
             <span class="nav-label">AI 算力</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-hbm.html" class="nav-item">
             <span class="nav-icon">💾</span>
             <span class="nav-label">HBM</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-optical.html" class="nav-item">
             <span class="nav-icon">🔌</span>
             <span class="nav-label">光互联</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-aerospace.html" class="nav-item">
             <span class="nav-icon">🚀</span>
             <span class="nav-label">商业航天</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-biotech.html" class="nav-item">
             <span class="nav-icon">💊</span>
             <span class="nav-label">生物医药</span>
           </a>
@@ -90,17 +102,15 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div>
         <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
-
     <main class="main-content">
       <div class="page-header">
         <h2>每日复盘</h2>
         <p>AI 帮你总结今日市场全貌，提炼核心要点 · 更新于 2026-07-09 15:00</p>
       </div>
-
       <div class="review-grid">
         <div class="review-stat-card">
           <div class="stat-label">上证指数</div>
@@ -118,7 +128,6 @@
           <div class="stat-change up">+172.82 (+4.49%)</div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -131,7 +140,6 @@
         </div>
         <div id="indexChart" style="width:100%;height:360px;"></div>
       </div>
-
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -154,11 +162,11 @@
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>北向资金今日净流入超120亿元，外资大幅加仓A股核心科技资产，创业板ETF成交量创近期新高。</span>
+              <span>北向资金今日净流入约28.5亿元，外资大幅加仓A股核心科技资产，创业板ETF成交量创近期新高。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>今日两市成交额约1.58万亿，较昨日放量28%，市场活跃度显著提升，超4500只个股上涨，涨停家数逾百家。</span>
+              <span>今日全市场成交额约2.93万亿，较昨日放量3497亿，市场活跃度显著提升，超4500只个股上涨，涨停家数逾百家。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
@@ -167,7 +175,6 @@
           </ul>
         </div>
       </div>
-
       <div class="card">
         <div class="card-header">
           <div class="card-title">
@@ -179,7 +186,6 @@
       </div>
     </main>
   </div>
-
   <div class="toast" id="toast"></div>
   <script src="js/main.js"></script>
   <script>
@@ -218,7 +224,6 @@
       });
       window.addEventListener('resize', () => chart.resize());
     }
-
     function initSectorHeat() {
       const chart = echarts.init(document.getElementById('sectorHeatChart'));
       const sectors = ['光模块', '半导体', '生物医药', '新能源', '机器人', '消费电子', '商业航天', 'AI应用', '汽车', '金融', '化工', '传媒'];
@@ -239,7 +244,6 @@
       });
       window.addEventListener('resize', () => chart.resize());
     }
-
     document.addEventListener('DOMContentLoaded', () => {
       initIndexChart();
       initSectorHeat();
