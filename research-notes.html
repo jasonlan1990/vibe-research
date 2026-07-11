@@ -45,32 +45,44 @@
           <span class="nav-icon">📡</span>
           <span class="nav-label">资讯雷达</span>
         </a>
+        <a href="event-probability.html" class="nav-item">
+          <span class="nav-icon">📉</span>
+          <span class="nav-label">事件概率</span>
+        </a>
+        <a href="a-share-announcements.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">A股公告</span>
+        </a>
+        <a href="public-news.html" class="nav-item">
+          <span class="nav-icon">📰</span>
+          <span class="nav-label">公开新闻</span>
+        </a>
         <div class="nav-item" style="cursor: default;">
           <span class="nav-icon">🗂️</span>
           <span class="nav-label">板块中心</span>
         </div>
         <div class="sub-nav">
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-humanoid.html" class="nav-item">
             <span class="nav-icon">🤖</span>
             <span class="nav-label">人形机器人</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-ai-computing.html" class="nav-item">
             <span class="nav-icon">🧠</span>
             <span class="nav-label">AI 算力</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-hbm.html" class="nav-item">
             <span class="nav-icon">💾</span>
             <span class="nav-label">HBM</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-optical.html" class="nav-item">
             <span class="nav-icon">🔌</span>
             <span class="nav-label">光互联</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-aerospace.html" class="nav-item">
             <span class="nav-icon">🚀</span>
             <span class="nav-label">商业航天</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-biotech.html" class="nav-item">
             <span class="nav-icon">💊</span>
             <span class="nav-label">生物医药</span>
           </a>
@@ -97,17 +109,15 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div>
         <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
-
     <main class="main-content">
       <div class="page-header">
         <h2>研究记录</h2>
         <p>沉淀你的研究思考，构建知识体系</p>
       </div>
-
       <div class="card" style="margin-bottom: 20px;">
         <div class="card-header">
           <div class="card-title">
@@ -131,11 +141,9 @@
           <button class="btn btn-primary" onclick="saveNote()">💾 保存笔记</button>
         </div>
       </div>
-
       <div class="notes-list" id="notesList"></div>
     </main>
   </div>
-
   <div class="toast" id="toast"></div>
   <script src="js/main.js"></script>
   <script>
@@ -145,88 +153,14 @@
       { id: 3, title: '人形机器人赛道梳理', content: '梳理了特斯拉Optimus、Figure AI、优必选、宇树科技等主流厂商进展。核心结论：1）2026-2027年将是量产元年，供应链确定性高；2）减速器、丝杠、传感器是三大核心零部件；3）A股相关标的估值偏高，建议关注回调机会。', date: '2026-07-01', tags: ['机器人 / 自动化'] },
       { id: 4, title: '美联储政策对A股影响分析', content: '美联储7月利率决议前瞻：市场预期维持利率不变，但关注点阵图指引。对A股影响：1）若释放鸽派信号，北向资金有望回流，利好核心资产；2）人民币汇率压力缓解，利好外资重仓股；3）若偏鹰，高估值科技板块可能承压。', date: '2026-06-28', tags: ['财经 / 宏观'] },
     ];
-
     let selectedTags = new Set();
-
-    function getNotes() {
-      const raw = localStorage.getItem('researchNotes');
-      if (raw) return JSON.parse(raw);
-      localStorage.setItem('researchNotes', JSON.stringify(defaultNotes));
-      return defaultNotes;
-    }
-
-    function saveNotes(data) {
-      localStorage.setItem('researchNotes', JSON.stringify(data));
-    }
-
-    function renderNotes() {
-      const data = getNotes();
-      const container = document.getElementById('notesList');
-      container.innerHTML = data.map(note => {
-        const tagHtml = note.tags.map(t => {
-          const colors = {
-            'AI / 大模型': 'tag-orange', '半导体 / 芯片': 'tag-cyan', '新能源': 'tag-green',
-            '汽车 / 新能源车': 'tag-pink', '机器人 / 自动化': 'tag-lime', '生物医药': 'tag-purple',
-            '财经 / 宏观': 'tag-yellow', '科技 / 互联网': 'tag-blue'
-          };
-          const cls = colors[t] || '';
-          return '<span class="btn-tag ' + cls + '" style="cursor:default;padding:2px 8px;font-size:11px;"><span class="tag-dot"></span>' + t + '</span>';
-        }).join('');
-        return '<div class="note-card" data-id="' + note.id + '" onclick="toggleNote(' + note.id + ')">' +
-          '<div class="note-card-header"><div class="note-card-title">' + note.title + '</div><div class="note-card-date">' + note.date + '</div></div>' +
-          '<div class="note-card-tags">' + tagHtml + '</div>' +
-          '<div class="note-card-excerpt">' + note.content + '</div>' +
-          '<div class="note-card-full">' + note.content.replace(/\n/g, '<br>') +
-          '<div class="note-actions"><button class="btn btn-ghost" onclick="event.stopPropagation(); deleteNote(' + note.id + ')">🗑️ 删除</button></div>' +
-          '</div></div>';
-      }).join('');
-    }
-
-    function toggleNote(id) {
-      const card = document.querySelector('.note-card[data-id="' + id + '"]');
-      if (card) card.classList.toggle('expanded');
-    }
-
-    function deleteNote(id) {
-      let data = getNotes();
-      data = data.filter(n => n.id !== id);
-      saveNotes(data);
-      renderNotes();
-      showToast('笔记已删除');
-    }
-
-    function saveNote() {
-      const title = document.getElementById('noteTitle').value.trim();
-      const content = document.getElementById('noteContent').value.trim();
-      if (!title || !content) { showToast('请填写标题和内容'); return; }
-      const data = getNotes();
-      const newNote = {
-        id: Date.now(),
-        title,
-        content,
-        date: new Date().toISOString().slice(0, 10),
-        tags: Array.from(selectedTags)
-      };
-      data.unshift(newNote);
-      saveNotes(data);
-      renderNotes();
-      document.getElementById('noteTitle').value = '';
-      document.getElementById('noteContent').value = '';
-      selectedTags.clear();
-      document.querySelectorAll('#tagSelector .btn-tag').forEach(t => t.classList.remove('selected'));
-      showToast('笔记保存成功');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderNotes();
-      document.querySelectorAll('#tagSelector .btn-tag').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tag = btn.dataset.tag;
-          if (selectedTags.has(tag)) { selectedTags.delete(tag); btn.classList.remove('selected'); }
-          else { selectedTags.add(tag); btn.classList.add('selected'); }
-        });
-      });
-    });
+    function getNotes() { const raw = localStorage.getItem('researchNotes'); if (raw) return JSON.parse(raw); localStorage.setItem('researchNotes', JSON.stringify(defaultNotes)); return defaultNotes; }
+    function saveNotes(data) { localStorage.setItem('researchNotes', JSON.stringify(data)); }
+    function renderNotes() { const data = getNotes(); const container = document.getElementById('notesList'); container.innerHTML = data.map(note => { const tagHtml = note.tags.map(t => { const colors = { 'AI / 大模型': 'tag-orange', '半导体 / 芯片': 'tag-cyan', '新能源': 'tag-green', '汽车 / 新能源车': 'tag-pink', '机器人 / 自动化': 'tag-lime', '生物医药': 'tag-purple', '财经 / 宏观': 'tag-yellow', '科技 / 互联网': 'tag-blue' }; const cls = colors[t] || ''; return '<span class="btn-tag ' + cls + '" style="cursor:default;padding:2px 8px;font-size:11px;"><span class="tag-dot"></span>' + t + '</span>'; }).join(''); return '<div class="note-card" data-id="' + note.id + '" onclick="toggleNote(' + note.id + ')">' + '<div class="note-card-header"><div class="note-card-title">' + note.title + '</div><div class="note-card-date">' + note.date + '</div></div>' + '<div class="note-card-tags">' + tagHtml + '</div>' + '<div class="note-card-excerpt">' + note.content + '</div>' + '<div class="note-card-full">' + note.content.replace(/\n/g, '<br>') + '<div class="note-actions"><button class="btn btn-ghost" onclick="event.stopPropagation(); deleteNote(' + note.id + ')">🗑️ 删除</button></div>' + '</div></div>'; }).join(''); }
+    function toggleNote(id) { const card = document.querySelector('.note-card[data-id="' + id + '"]'); if (card) card.classList.toggle('expanded'); }
+    function deleteNote(id) { let data = getNotes(); data = data.filter(n => n.id !== id); saveNotes(data); renderNotes(); showToast('笔记已删除'); }
+    function saveNote() { const title = document.getElementById('noteTitle').value.trim(); const content = document.getElementById('noteContent').value.trim(); if (!title || !content) { showToast('请填写标题和内容'); return; } const data = getNotes(); const newNote = { id: Date.now(), title, content, date: new Date().toISOString().slice(0, 10), tags: Array.from(selectedTags) }; data.unshift(newNote); saveNotes(data); renderNotes(); document.getElementById('noteTitle').value = ''; document.getElementById('noteContent').value = ''; selectedTags.clear(); document.querySelectorAll('#tagSelector .btn-tag').forEach(t => t.classList.remove('selected')); showToast('笔记保存成功'); }
+    document.addEventListener('DOMContentLoaded', () => { renderNotes(); document.querySelectorAll('#tagSelector .btn-tag').forEach(btn => { btn.addEventListener('click', () => { const tag = btn.dataset.tag; if (selectedTags.has(tag)) { selectedTags.delete(tag); btn.classList.remove('selected'); } else { selectedTags.add(tag); btn.classList.add('selected'); } }); }); });
   </script>
 </body>
 </html>
