@@ -49,32 +49,44 @@
           <span class="nav-icon">📡</span>
           <span class="nav-label">资讯雷达</span>
         </a>
+        <a href="event-probability.html" class="nav-item">
+          <span class="nav-icon">📉</span>
+          <span class="nav-label">事件概率</span>
+        </a>
+        <a href="a-share-announcements.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">A股公告</span>
+        </a>
+        <a href="public-news.html" class="nav-item">
+          <span class="nav-icon">📰</span>
+          <span class="nav-label">公开新闻</span>
+        </a>
         <div class="nav-item" style="cursor: default;">
           <span class="nav-icon">🗂️</span>
           <span class="nav-label">板块中心</span>
         </div>
         <div class="sub-nav">
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-humanoid.html" class="nav-item">
             <span class="nav-icon">🤖</span>
             <span class="nav-label">人形机器人</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-ai-computing.html" class="nav-item">
             <span class="nav-icon">🧠</span>
             <span class="nav-label">AI 算力</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-hbm.html" class="nav-item">
             <span class="nav-icon">💾</span>
             <span class="nav-label">HBM</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-optical.html" class="nav-item">
             <span class="nav-icon">🔌</span>
             <span class="nav-label">光互联</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-aerospace.html" class="nav-item">
             <span class="nav-icon">🚀</span>
             <span class="nav-label">商业航天</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-biotech.html" class="nav-item">
             <span class="nav-icon">💊</span>
             <span class="nav-label">生物医药</span>
           </a>
@@ -101,17 +113,15 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div>
         <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
-
     <main class="main-content">
       <div class="page-header">
         <h2>接入AI</h2>
         <p>与AI投研助手对话，获取深度分析</p>
       </div>
-
       <div class="chat-container">
         <div class="chat-messages" id="chatMessages">
           <div class="chat-message ai">
@@ -145,104 +155,21 @@
       </div>
     </main>
   </div>
-
   <div class="toast" id="toast"></div>
   <script src="js/main.js"></script>
   <script>
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
     const chatMessages = document.getElementById('chatMessages');
-
-    function addMessage(text, isUser) {
-      const msg = document.createElement('div');
-      msg.className = 'chat-message ' + (isUser ? 'user' : 'ai');
-      msg.innerHTML = '<div class="avatar">' + (isUser ? '👤' : '🤖') + '</div><div class="bubble">' + text + '</div>';
-      chatMessages.appendChild(msg);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function showTyping() {
-      const msg = document.createElement('div');
-      msg.className = 'chat-message ai';
-      msg.id = 'typingMsg';
-      msg.innerHTML = '<div class="avatar">🤖</div><div class="bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
-      chatMessages.appendChild(msg);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function removeTyping() {
-      const el = document.getElementById('typingMsg');
-      if (el) el.remove();
-    }
-
-    function getAIResponse(text) {
-      const lower = text.toLowerCase();
-      if (lower.includes('中际旭创') || lower.includes('300308')) {
-        return '中际旭创（300308）是国内光模块龙头，今日大涨5.90%至1194.90元。核心逻辑：800G/1.6T产品持续放量，深度受益于全球AI算力建设。2026Q1净利润增长185%，毛利率36.8%。当前动态PE约48倍，估值处于历史偏高区间，建议关注1.6T订单落地节奏，短期注意1200元整数关口压力。';
-      }
-      if (lower.includes('茅台') || lower.includes('600519')) {
-        return '贵州茅台（600519）今日微跌1.43%至1182.19元。作为A股核心资产，飞天茅台批价维持2200元以上，渠道库存健康。2026Q1净利润增长16.8%，直销占比提升至48%。当前PE约25倍，处于近五年中枢偏低位置，具备安全边际，适合作为组合底仓配置。';
-      }
-      if (lower.includes('宁德') || lower.includes('300750')) {
-        return '宁德时代（300750）今日大涨4.02%至375.50元。全球动力电池市占率持续领先，Q1装机量同比增长22%。储能业务成为第二增长曲线，Q1出货同比增长45%。今日市场对凝聚态电池技术突破反应积极。当前动态PE约22倍，处于历史较低分位，估值具备吸引力。';
-      }
-      if (lower.includes('比亚迪') || lower.includes('002594')) {
-        return '比亚迪（002594）今日小幅下跌1.06%至86.87元。6月销量突破40万辆创历史新高，插混车型持续热销，海外出口单月超6万辆。高端品牌仰望、腾势销量稳步提升。当前PE约18倍，对比海外同行仍有折价，建议耐心持有等待下半年新车周期催化。';
-      }
-      if (lower.includes('持仓') || lower.includes('组合') || lower.includes('诊断')) {
-        return '根据你的持仓分析：1）AI算力+科技成长占比约52%，集中度偏高，需防范风格切换风险；2）中际旭创、新易盛、海光信息短期涨幅较大，建议设置动态止盈；3）茅台作为防御底仓配置合理；4）比亚迪基本面扎实，可耐心持有。整体建议：适当增配消费或医药平衡组合波动。';
-      }
-      if (lower.includes('市场') || lower.includes('大盘') || lower.includes('复盘') || lower.includes('今天')) {
-        return '今日A股三大指数全线大涨，创业板指领涨4.49%，深成指涨3.07%，沪指涨1.65%。AI算力产业链成为最大亮点，中际旭创、新易盛、海光信息集体大涨。北向资金净流入超120亿元，两市成交额约1.58万亿，超4500只个股上涨。市场情绪高涨，但需关注短期过热后的分化风险。';
-      }
-      if (lower.includes('光模块') || lower.includes('光互联') || lower.includes('cpo')) {
-        return '光模块板块今日表现极为强势，中际旭创涨5.90%，新易盛涨6.78%。核心驱动力：海外云厂商capex持续上调，800G需求爆发，1.6T开始小批量出货。行业格局：中际旭创龙头地位稳固，新易盛增速更快，天孚通信等上游器件厂商也受益。风险点：行业产能过剩、技术路线变化（CPO）、地缘政治。';
-      }
-      if (lower.includes('半导体') || lower.includes('芯片') || lower.includes('海光')) {
-        return '半导体板块今日整体走强，海光信息涨5.97%。国产替代逻辑持续强化，海光DCU芯片获大型互联网公司批量采购。设备端：北方华创、中微公司订单饱满。材料端：沪硅产业、安集科技稳步增长。建议关注：国产算力（海光、寒武纪）、设备（北方华创）、存储（兆易创新）三大主线。';
-      }
-      if (lower.includes('医药') || lower.includes('药明') || lower.includes('603259')) {
-        return '药明康德（603259）今日大涨4.91%至121.07元。作为CXO龙头，一体化平台优势显著，在手订单充沛。地缘政治风险有所缓释，市场信心回暖。2026Q1新增订单同比增长35%。当前PE约28倍，较历史高点仍有较大折价。风险点：美国政策不确定性、行业竞争加剧。';
-      }
-      if (lower.includes('机器人') || lower.includes('人形')) {
-        return '人形机器人板块近期持续活跃，优必选、绿的谐波等表现亮眼。核心逻辑：2026-2027年将是量产元年，特斯拉Optimus Gen3预计年底发布。三大核心零部件：减速器（绿的谐波）、丝杠（恒立液压）、传感器（柯力传感）。当前板块估值偏高，建议关注回调后的布局机会。';
-      }
-      if (lower.includes('你好') || lower.includes('hi') || lower.includes('hello')) {
-        return '你好！我是Vibe-Research的AI投研助手。我可以帮你分析个股、解读市场、诊断持仓、梳理行业逻辑。请问有什么可以帮你的？';
-      }
-      return '这是一个很好的问题。从当前市场环境来看，AI算力产业链依然是确定性最高的赛道，但需关注估值泡沫风险。建议结合基本面和估值进行综合判断，同时注意分散投资、控制仓位。如需更具体的分析，可以告诉我具体的股票代码或行业方向。';
-    }
-
-    function sendMessage() {
-      const text = chatInput.value.trim();
-      if (!text) return;
-      addMessage(text, true);
-      chatInput.value = '';
-      chatInput.style.height = '24px';
-      showTyping();
-      setTimeout(() => {
-        removeTyping();
-        addMessage(getAIResponse(text), false);
-      }, 800 + Math.random() * 1000);
-    }
-
-    function sendQuick(text) {
-      addMessage(text, true);
-      showTyping();
-      setTimeout(() => {
-        removeTyping();
-        addMessage(getAIResponse(text), false);
-      }, 800 + Math.random() * 1000);
-    }
-
+    function addMessage(text, isUser) { const msg = document.createElement('div'); msg.className = 'chat-message ' + (isUser ? 'user' : 'ai'); msg.innerHTML = '<div class="avatar">' + (isUser ? '👤' : '🤖') + '</div><div class="bubble">' + text + '</div>'; chatMessages.appendChild(msg); chatMessages.scrollTop = chatMessages.scrollHeight; }
+    function showTyping() { const msg = document.createElement('div'); msg.className = 'chat-message ai'; msg.id = 'typingMsg'; msg.innerHTML = '<div class="avatar">🤖</div><div class="bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>'; chatMessages.appendChild(msg); chatMessages.scrollTop = chatMessages.scrollHeight; }
+    function removeTyping() { const el = document.getElementById('typingMsg'); if (el) el.remove(); }
+    function getAIResponse(text) { const lower = text.toLowerCase(); if (lower.includes('中际旭创') || lower.includes('300308')) return '中际旭创（300308）是国内光模块龙头，今日暴跌8.45%至1093.98元。核心逻辑：800G/1.6T产品持续放量，深度受益于全球AI算力建设。2026Q1净利润增长185%，毛利率36.8%。当前动态PE约44倍，经过今日回调后估值压力有所释放，建议关注1.6T订单落地节奏，短期关注1000元整数关口支撑。'; if (lower.includes('茅台') || lower.includes('600519')) return '贵州茅台（600519）今日微涨1.93%至1204.98元。作为A股核心资产，在市场科技股大跌背景下表现抗跌。飞天茅台批价维持2200元以上，渠道库存健康。2026Q1净利润增长16.8%，直销占比提升至48%。当前PE约25倍，处于近五年中枢偏低位置，具备安全边际，适合作为组合底仓配置。'; if (lower.includes('宁德') || lower.includes('300750')) return '宁德时代（300750）今日大跌7.12%至348.76元。全球动力电池市占率持续领先，Q1装机量同比增长22%。储能业务成为第二增长曲线，Q1出货同比增长45%。今日市场对新能源车产业链情绪降温，资金获利了结。当前动态PE约20倍，处于历史较低分位，估值具备吸引力。'; if (lower.includes('比亚迪') || lower.includes('002594')) return '比亚迪（002594）今日逆势上涨3.60%至90.00元。6月销量突破40万辆创历史新高，插混车型持续热销，海外出口单月超6万辆。高端品牌仰望、腾势销量稳步提升。当前PE约19倍，在市场弱势中表现亮眼，建议继续持有。'; if (lower.includes('持仓') || lower.includes('组合') || lower.includes('诊断')) return '根据你的持仓分析：1）今日科技板块遭遇大幅回调，光模块+半导体+AI芯片占比约52%，拖累组合表现明显；2）中际旭创、宁德时代、新易盛、立讯精密今日跌幅较大，短期获利盘集中兑现，建议关注20日均线支撑；3）贵州茅台逆势上涨，防御属性凸显；4）比亚迪逆势上涨，基本面扎实。整体建议：暂不建议急于补仓，可观察3-5个交易日，待市场企稳再考虑分批加仓。'; if (lower.includes('市场') || lower.includes('大盘') || lower.includes('复盘') || lower.includes('今天')) return '今日A股三大指数全线大跌，创业板指暴跌4.37%，深成指跌2.29%，沪指跌1.00%。科技成长板块遭遇重挫，光模块、新能源、半导体集体大跌。北向资金净流出约60亿元，全市场成交额约3.39万亿，超4000只个股下跌。资金避险情绪升温，防御性板块（白酒、医药）表现相对抗跌。短期或延续震荡，建议控制仓位。'; if (lower.includes('光模块') || lower.includes('光互联') || lower.includes('cpo')) return '光模块板块今日遭遇重挫，中际旭创跌8.45%，新易盛跌4.12%。核心逻辑未变：海外云厂商capex持续上调，800G需求爆发，1.6T开始小批量出货。行业格局：中际旭创龙头地位稳固，新易盛增速更快。今日大跌更多是短期获利盘集中兑现，而非基本面变化。风险点：行业产能过剩、技术路线变化（CPO）、地缘政治。'; if (lower.includes('半导体') || lower.includes('芯片') || lower.includes('海光')) return '半导体板块今日整体走弱，海光信息跌2.88%。国产替代逻辑仍在，海光DCU芯片获大型互联网公司批量采购。设备端：北方华创、中微公司订单饱满。材料端：沪硅产业、安集科技稳步增长。建议关注：国产算力（海光、寒武纪）、设备（北方华创）、存储（兆易创新）三大主线。短期注意市场情绪波动。'; if (lower.includes('医药') || lower.includes('药明') || lower.includes('603259')) return '药明康德（603259）今日微涨1.84%至123.30元。作为CXO龙头，一体化平台优势显著，在手订单充沛。在市场调整中表现相对稳健，资金避险情绪明显。2026Q1新增订单同比增长35%。当前PE约29倍，较历史高点仍有较大折价。风险点：美国政策不确定性、行业竞争加剧。'; if (lower.includes('比亚迪') || lower.includes('002594')) return '比亚迪（002594）今日逆势上涨3.60%至90.00元。6月销量突破40万辆创历史新高，插混车型持续热销，海外出口单月超6万辆。高端品牌仰望、腾势销量稳步提升。当前PE约19倍，在市场弱势中表现亮眼，建议继续持有。'; return '我理解你的问题。目前系统处于演示模式，我可以帮你分析个股、诊断持仓、解读市场。你可以尝试问："帮我分析一下中际旭创"、"今天市场怎么样"、"帮我诊断持仓"等。'; }
+    function sendMessage() { const text = chatInput.value.trim(); if (!text) return; addMessage(text, true); chatInput.value = ''; chatInput.style.height = '24px'; showTyping(); setTimeout(() => { removeTyping(); addMessage(getAIResponse(text), false); }, 800 + Math.random() * 1000); }
+    function sendQuick(text) { addMessage(text, true); showTyping(); setTimeout(() => { removeTyping(); addMessage(getAIResponse(text), false); }, 800 + Math.random() * 1000); }
     sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-    });
-    chatInput.addEventListener('input', () => {
-      chatInput.style.height = 'auto';
-      chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
-    });
+    chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+    chatInput.addEventListener('input', () => { chatInput.style.height = 'auto'; chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px'; });
   </script>
 </body>
 </html>
