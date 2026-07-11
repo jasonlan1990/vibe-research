@@ -3,18 +3,15 @@
  * Shared utilities, localStorage helpers, modal & toast
  */
 
-// ============================================
-// Tag Cloud Data
-// ============================================
 const tagData = {
   ai: {
     label: 'AI / 大模型',
     summary: [
-      '阿里巴巴禁止员工使用Claude Code，企业AI工具管控趋严。',
-      'Anthropic推出Claude Science Beta，多智能体AI工作台赋能科学研究。',
-      'NVIDIA发布ASPIRE机器人框架，零样本任务性能达31%。',
-      'GPT-5.6三大模型传闻定档7月7日，或引行业关注。',
-      '光象科技完成数亿元天使轮融资，布局物理原生基座模型。',
+      '科技股遭遇大幅回调，AI芯片、光模块、新能源产业链集体重挫，资金获利了结明显。',
+      '中际旭创暴跌8.45%，宁德时代跌7.12%，创业板指跌超4%，市场风险偏好快速下降。',
+      '贵州茅台、比亚迪逆势上涨，防御性板块获资金避险青睐，市场风格短期切换。',
+      '北向资金净流出超60亿，外资对科技成长板块态度趋于谨慎，短期或延续震荡。',
+      '建议关注业绩确定性较高的防御性品种，科技板块待企稳后再考虑分批布局。',
     ],
   },
   semiconductor: {
@@ -129,17 +126,11 @@ const tagData = {
   },
 };
 
-// ============================================
-// localStorage helpers
-// ============================================
 function lsGet(key, fallback) {
   try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; }
 }
 function lsSet(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
 
-// ============================================
-// Toast
-// ============================================
 function showToast(msg) {
   const t = document.getElementById('toast');
   if (!t) return;
@@ -148,9 +139,6 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-// ============================================
-// Save Note Modal (used by index.html)
-// ============================================
 let pendingNoteTitle = '';
 let pendingNoteContent = '';
 
@@ -187,9 +175,6 @@ function confirmSaveNote() {
   showToast('已存入研究记录');
 }
 
-// ============================================
-// Tag Cloud Filtering (index.html)
-// ============================================
 document.addEventListener('DOMContentLoaded', () => {
   const tagButtons = document.querySelectorAll('#tagCloud .btn-tag');
   const summaryBody = document.getElementById('summaryBody');
