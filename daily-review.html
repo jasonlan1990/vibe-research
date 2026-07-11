@@ -217,12 +217,8 @@
     function initIndexChart() {
       const chart = echarts.init(document.getElementById('indexChart'));
       const times = [];
-      const indices = {
-        '上证指数': { base: 4031.54, color: '#ff8c42', data: [] },
-        '创业板指': { base: 4041.86, color: '#ff42a8', data: [] },
-        '科创50': { base: 1540.00, color: '#42d3ff', data: [] },
-        '北证50': { base: 1280.00, color: '#a855f7', data: [] }
-      };
+      const shData = [];
+      const baseSh = 4031.54;
       for (let i = 0; i <= 240; i++) {
         const h = 9 + Math.floor(i / 60);
         const m = i % 60;
@@ -232,29 +228,26 @@
         const t = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
         times.push(t);
         const progress = i / 240;
-        indices['上证指数'].data.push((indices['上证指数'].base + Math.sin(progress * 3) * 20 - progress * 45 + Math.random() * 8).toFixed(2));
-        indices['创业板指'].data.push((indices['创业板指'].base + Math.sin(progress * 3) * 60 - progress * 280 + Math.random() * 25).toFixed(2));
-        indices['科创50'].data.push((indices['科创50'].base + Math.sin(progress * 3) * 40 - progress * 180 + Math.random() * 15).toFixed(2));
-        indices['北证50'].data.push((indices['北证50'].base + Math.sin(progress * 3) * 25 - progress * 90 + Math.random() * 10).toFixed(2));
+        shData.push((baseSh + Math.sin(progress * 3) * 20 - progress * 45 + Math.random() * 8).toFixed(2));
       }
       chart.setOption({
         backgroundColor: 'transparent',
         tooltip: { trigger: 'axis', backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' } },
-        legend: { data: Object.keys(indices), textStyle: { color: '#8b92a8' }, bottom: 0 },
+        legend: { data: ['上证指数'], textStyle: { color: '#8b92a8' }, bottom: 0 },
         grid: { left: 60, right: 20, top: 20, bottom: 40 },
         xAxis: { type: 'category', data: times, axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', interval: 59 } },
         yAxis: { type: 'value', splitLine: { lineStyle: { color: '#1a1d2e' } }, axisLabel: { color: '#5a5e72' } },
-        series: Object.entries(indices).map(([name, cfg]) => ({
-          name, type: 'line', data: cfg.data, smooth: true, symbol: 'none',
-          lineStyle: { color: cfg.color, width: 2 }, itemStyle: { color: cfg.color }
-        }))
+        series: [
+          { name: '上证指数', type: 'line', data: shData, smooth: true, symbol: 'none', lineStyle: { color: '#ff8c42', width: 2 }, itemStyle: { color: '#ff8c42' }, areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(255,140,66,0.15)' }, { offset: 1, color: 'rgba(255,140,66,0)' }] } } }
+        ]
       });
       window.addEventListener('resize', () => chart.resize());
     }
     function initSectorHeat() {
       const chart = echarts.init(document.getElementById('sectorHeatChart'));
-      const sectors = ['光模块', '半导体', '生物医药', '新能源', '机器人', '消费电子', '商业航天', 'AI应用', '汽车', '金融', '化工', '传媒'];
-      const changes = [-8.45, -4.37, 1.84, -2.88, -0.75, -1.00, 4.57, -3.60, -1.84, 1.93, -2.50, -3.60];
+      const sectors = ['商业航天', '金融', '生物医药', '机器人', '消费电子', '汽车', '化工', '新能源', 'AI应用', '传媒', '半导体', '光模块'];
+      const changes = [4.57, 1.93, 1.84, -0.75, -1.00, -1.84, -2.50, -2.88, -3.60, -3.60, -4.37, -8.45];
+
       const data = changes.map((v, i) => ({
         value: v,
         itemStyle: {
