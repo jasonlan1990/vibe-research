@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     .sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .sector-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; transition: var(--transition); cursor: pointer; }
+    .sector-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; transition: var(--transition); cursor: pointer; display: block; text-decoration: none; color: inherit; }
     .sector-card:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: var(--shadow); }
     .sector-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .sector-card-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
@@ -46,32 +46,44 @@
           <span class="nav-icon">📡</span>
           <span class="nav-label">资讯雷达</span>
         </a>
-        <div class="nav-item" style="cursor: default; color: var(--accent-orange-light);">
+        <a href="event-probability.html" class="nav-item">
+          <span class="nav-icon">📉</span>
+          <span class="nav-label">事件概率</span>
+        </a>
+        <a href="a-share-announcements.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">A股公告</span>
+        </a>
+        <a href="public-news.html" class="nav-item">
+          <span class="nav-icon">📰</span>
+          <span class="nav-label">公开新闻</span>
+        </a>
+        <div class="nav-item" style="cursor: default;">
           <span class="nav-icon">🗂️</span>
           <span class="nav-label">板块中心</span>
         </div>
         <div class="sub-nav">
-          <a href="sector-center.html" class="nav-item active">
+          <a href="sector-humanoid.html" class="nav-item">
             <span class="nav-icon">🤖</span>
             <span class="nav-label">人形机器人</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-ai-computing.html" class="nav-item">
             <span class="nav-icon">🧠</span>
             <span class="nav-label">AI 算力</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-hbm.html" class="nav-item">
             <span class="nav-icon">💾</span>
             <span class="nav-label">HBM</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-optical.html" class="nav-item">
             <span class="nav-icon">🔌</span>
             <span class="nav-label">光互联</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-aerospace.html" class="nav-item">
             <span class="nav-icon">🚀</span>
             <span class="nav-label">商业航天</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-biotech.html" class="nav-item">
             <span class="nav-icon">💊</span>
             <span class="nav-label">生物医药</span>
           </a>
@@ -98,25 +110,23 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div>
         <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
-
     <main class="main-content">
       <div class="page-header">
         <h2>板块中心</h2>
-        <p>追踪热门赛道，洞察行业趋势 · 更新于 2026-07-09 15:00</p>
+        <p>追踪热门赛道，洞察行业趋势 · 更新于 2026-07-10 15:00</p>
       </div>
-
       <div class="sector-grid">
-        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
+        <a href="sector-humanoid.html" class="sector-card">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🤖</span>
               <span>人形机器人</span>
             </div>
-            <span class="sector-card-badge">+2.85%</span>
+            <span class="sector-card-badge down">-0.85%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -125,7 +135,7 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value up">+12.45%</span>
+              <span class="sector-stat-value up">+10.20%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
@@ -133,18 +143,17 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value sentiment-high">🔥 高</span>
+              <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
-        </div>
-
-        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
+        </a>
+        <a href="sector-ai-computing.html" class="sector-card">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🧠</span>
               <span>AI 算力</span>
             </div>
-            <span class="sector-card-badge">+5.12%</span>
+            <span class="sector-card-badge down">-8.45%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -153,7 +162,7 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value up">+18.67%</span>
+              <span class="sector-stat-value up">+8.50%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
@@ -161,18 +170,17 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value sentiment-high">🔥🔥 极高</span>
+              <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
-        </div>
-
-        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
+        </a>
+        <a href="sector-hbm.html" class="sector-card">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">💾</span>
               <span>HBM</span>
             </div>
-            <span class="sector-card-badge">+1.68%</span>
+            <span class="sector-card-badge down">-2.50%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -181,7 +189,7 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value up">+8.33%</span>
+              <span class="sector-stat-value up">+5.00%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
@@ -192,15 +200,14 @@
               <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
-        </div>
-
-        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
+        </a>
+        <a href="sector-optical.html" class="sector-card">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🔌</span>
               <span>光互联</span>
             </div>
-            <span class="sector-card-badge">+3.50%</span>
+            <span class="sector-card-badge down">-4.12%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -209,7 +216,7 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value up">+14.20%</span>
+              <span class="sector-stat-value up">+8.50%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
@@ -217,18 +224,17 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value sentiment-high">🔥 高</span>
+              <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
-        </div>
-
-        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
+        </a>
+        <a href="sector-aerospace.html" class="sector-card">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">🚀</span>
               <span>商业航天</span>
             </div>
-            <span class="sector-card-badge">+1.56%</span>
+            <span class="sector-card-badge down">-1.20%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -237,7 +243,7 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value up">+5.78%</span>
+              <span class="sector-stat-value up">+4.00%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
@@ -248,15 +254,14 @@
               <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
-        </div>
-
-        <div class="sector-card" onclick="alert('板块详情页开发中，敬请期待')">
+        </a>
+        <a href="sector-biotech.html" class="sector-card">
           <div class="sector-card-header">
             <div class="sector-card-title">
               <span class="sector-icon">💊</span>
               <span>生物医药</span>
             </div>
-            <span class="sector-card-badge down">-0.42%</span>
+            <span class="sector-card-badge">+1.84%</span>
           </div>
           <div class="sector-card-body">
             <div class="sector-stat">
@@ -265,7 +270,7 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">近7日涨幅</span>
-              <span class="sector-stat-value down">-1.23%</span>
+              <span class="sector-stat-value up">+1.20%</span>
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">新闻数</span>
@@ -273,14 +278,13 @@
             </div>
             <div class="sector-stat">
               <span class="sector-stat-label">市场情绪</span>
-              <span class="sector-stat-value sentiment-low">😐 中性</span>
+              <span class="sector-stat-value sentiment-mid">⚡ 中高</span>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </main>
   </div>
-
   <div class="toast" id="toast"></div>
   <script src="js/main.js"></script>
 </body>
