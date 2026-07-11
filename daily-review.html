@@ -109,23 +109,23 @@
     <main class="main-content">
       <div class="page-header">
         <h2>每日复盘</h2>
-        <p>AI 帮你总结今日市场全貌，提炼核心要点 · 更新于 2026-07-09 15:00</p>
+        <p>AI 帮你总结今日市场全貌，提炼核心要点 · 更新于 2026-07-10 15:00</p>
       </div>
       <div class="review-grid">
         <div class="review-stat-card">
           <div class="stat-label">上证指数</div>
-          <div class="stat-value up">4,036.59</div>
-          <div class="stat-change up">+65.71 (+1.65%)</div>
+          <div class="stat-value down">3,996.16</div>
+          <div class="stat-change down">-40.43 (-1.00%)</div>
         </div>
         <div class="review-stat-card">
           <div class="stat-label">深证成指</div>
-          <div class="stat-value up">15,398.73</div>
-          <div class="stat-change up">+459.00 (+3.07%)</div>
+          <div class="stat-value down">15,046.67</div>
+          <div class="stat-change down">-352.06 (-2.29%)</div>
         </div>
         <div class="review-stat-card">
           <div class="stat-label">创业板指</div>
-          <div class="stat-value up">4,018.17</div>
-          <div class="stat-change up">+172.82 (+4.49%)</div>
+          <div class="stat-value down">3,842.73</div>
+          <div class="stat-change down">-175.44 (-4.37%)</div>
         </div>
       </div>
       <div class="card">
@@ -135,7 +135,7 @@
             <span>指数分时走势</span>
           </div>
           <div class="card-actions">
-            <span style="font-size:12px;color:var(--text-muted);">2026-07-09</span>
+            <span style="font-size:12px;color:var(--text-muted);">2026-07-10</span>
           </div>
         </div>
         <div id="indexChart" style="width:100%;height:360px;"></div>
@@ -154,23 +154,23 @@
           <ul style="padding-left: 0; list-style: none;">
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary);">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>今日A股三大指数全线大涨，创业板指领涨4.49%，深成指涨3.07%，沪指涨1.65%，市场做多情绪高涨，科技成长股全面爆发。</span>
+              <span>今日A股三大指数全线回调，创业板指暴跌4.37%领跌，深成指跌2.29%，沪指跌1.00%，科技成长股遭遇大幅获利回吐。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>AI算力产业链成为最大亮点，中际旭创大涨5.90%逼近1200元，新易盛涨6.78%，海光信息涨5.97%，资金持续涌入光模块与国产算力。</span>
+              <span>AI算力产业链大幅分化，中际旭创暴跌8.45%至1093.98元，宁德时代跌7.12%，新易盛跌4.12%，海光信息跌2.88%，资金获利出逃明显。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>北向资金今日净流入约28.5亿元，外资大幅加仓A股核心科技资产，创业板ETF成交量创近期新高。</span>
+              <span>北向资金今日净流出约35亿元，外资对A股科技板块态度转谨慎，创业板ETF成交量创近期新高但资金流出。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>今日全市场成交额约2.93万亿，较昨日放量3497亿，市场活跃度显著提升，超4500只个股上涨，涨停家数逾百家。</span>
+              <span>今日全市场成交额约3.39万亿，较昨日放量4585亿，市场活跃度显著提升但超3200只个股下跌，跌停家数超50家。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>明日关注：美联储6月会议纪要、国内6月社融数据发布，宏观流动性数据或影响短期市场节奏。</span>
+              <span>贵州茅台逆势上涨1.93%至1204.98元，比亚迪涨3.60%至90.00元，传统蓝筹成为资金避风港。明日关注周末消息面变化。</span>
             </li>
           </ul>
         </div>
@@ -195,7 +195,7 @@
       const shData = [];
       const szData = [];
       const cyData = [];
-      const baseSh = 3970.88, baseSz = 14939.73, baseCy = 3845.35;
+      const baseSh = 4031.54, baseSz = 15480.41, baseCy = 4041.86;
       for (let i = 0; i <= 240; i++) {
         const h = 9 + Math.floor(i / 60);
         const m = i % 60;
@@ -205,9 +205,9 @@
         const t = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
         times.push(t);
         const progress = i / 240;
-        shData.push((baseSh + Math.sin(progress * 3) * 30 + progress * 35 + Math.random() * 8).toFixed(2));
-        szData.push((baseSz + Math.sin(progress * 3) * 120 + progress * 320 + Math.random() * 30).toFixed(2));
-        cyData.push((baseCy + Math.sin(progress * 3) * 100 + progress * 170 + Math.random() * 25).toFixed(2));
+        shData.push((baseSh + Math.sin(progress * 3) * 20 - progress * 45 + Math.random() * 8).toFixed(2));
+        szData.push((baseSz + Math.sin(progress * 3) * 80 - progress * 520 + Math.random() * 30).toFixed(2));
+        cyData.push((baseCy + Math.sin(progress * 3) * 60 - progress * 280 + Math.random() * 25).toFixed(2));
       }
       chart.setOption({
         backgroundColor: 'transparent',
@@ -227,7 +227,7 @@
     function initSectorHeat() {
       const chart = echarts.init(document.getElementById('sectorHeatChart'));
       const sectors = ['光模块', '半导体', '生物医药', '新能源', '机器人', '消费电子', '商业航天', 'AI应用', '汽车', '金融', '化工', '传媒'];
-      const changes = [5.90, 4.02, 4.91, 3.19, 2.85, 1.65, 1.20, 3.50, -1.06, 0.80, 0.45, 2.10];
+      const changes = [-8.45, -4.37, -7.12, -2.88, -1.20, -1.00, 1.93, 3.60, -1.84, 1.84, -2.50, -3.60];
       const colors = changes.map(v => v >= 0 ? '#ff4242' : '#42ff8c');
       chart.setOption({
         backgroundColor: 'transparent',
