@@ -54,32 +54,44 @@
           <span class="nav-icon">📡</span>
           <span class="nav-label">资讯雷达</span>
         </a>
+        <a href="event-probability.html" class="nav-item">
+          <span class="nav-icon">📉</span>
+          <span class="nav-label">事件概率</span>
+        </a>
+        <a href="a-share-announcements.html" class="nav-item">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">A股公告</span>
+        </a>
+        <a href="public-news.html" class="nav-item">
+          <span class="nav-icon">📰</span>
+          <span class="nav-label">公开新闻</span>
+        </a>
         <div class="nav-item" style="cursor: default;">
           <span class="nav-icon">🗂️</span>
           <span class="nav-label">板块中心</span>
         </div>
         <div class="sub-nav">
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-humanoid.html" class="nav-item">
             <span class="nav-icon">🤖</span>
             <span class="nav-label">人形机器人</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-ai-computing.html" class="nav-item">
             <span class="nav-icon">🧠</span>
             <span class="nav-label">AI 算力</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-hbm.html" class="nav-item">
             <span class="nav-icon">💾</span>
             <span class="nav-label">HBM</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-optical.html" class="nav-item">
             <span class="nav-icon">🔌</span>
             <span class="nav-label">光互联</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-aerospace.html" class="nav-item">
             <span class="nav-icon">🚀</span>
             <span class="nav-label">商业航天</span>
           </a>
-          <a href="sector-center.html" class="nav-item">
+          <a href="sector-biotech.html" class="nav-item">
             <span class="nav-icon">💊</span>
             <span class="nav-label">生物医药</span>
           </a>
@@ -106,17 +118,15 @@
           <span>🌞</span>
           <span>亮色</span>
         </div>
-        <div class="author-info">联系作者：<a href="#">simonlin.net</a></div>
+        <div class="author-info">联系作者：<a href="mailto:jasenlan@163.com">JasonLAN</a></div>
         <div class="disclaimer">v0.1.0 · 不荐股 · 不预测 · 无倾向</div>
       </div>
     </aside>
-
     <main class="main-content">
       <div class="page-header">
         <h2>个股数据</h2>
-        <p>查询个股行情、财务与AI分析 · 更新于 2026-07-09 15:00</p>
+        <p>查询个股行情、财务与AI分析 · 更新于 2026-07-10 15:00</p>
       </div>
-
       <div class="stock-search-bar">
         <div class="search-wrapper">
           <input type="text" class="stock-search-input" id="stockSearch" placeholder="输入股票代码或名称，如 300308 或 中际旭创">
@@ -124,29 +134,28 @@
         </div>
         <button class="btn btn-primary" onclick="doSearch()">🔍 搜索</button>
       </div>
-
       <div class="stock-detail-grid">
         <div class="stock-price-card" id="priceCard">
           <div class="stock-name" id="stockName">中际旭创</div>
           <div class="stock-code" id="stockCode">300308.SZ</div>
-          <div class="stock-price up" id="stockPrice">1,194.90</div>
-          <div class="stock-change up" id="stockChange">+66.55 (+5.90%)</div>
+          <div class="stock-price down" id="stockPrice">1,093.98</div>
+          <div class="stock-change down" id="stockChange">-100.92 (-8.45%)</div>
           <div class="mini-stat-grid">
             <div class="stat-cell">
               <div class="stat-label">今开</div>
-              <div class="stat-val" id="valOpen">1,153.00</div>
+              <div class="stat-val" id="valOpen">1,210.00</div>
             </div>
             <div class="stat-cell">
               <div class="stat-label">最高</div>
-              <div class="stat-val up" id="valHigh">1,199.99</div>
+              <div class="stat-val up" id="valHigh">1,218.00</div>
             </div>
             <div class="stat-cell">
               <div class="stat-label">最低</div>
-              <div class="stat-val down" id="valLow">1,117.01</div>
+              <div class="stat-val down" id="valLow">1,093.98</div>
             </div>
             <div class="stat-cell">
               <div class="stat-label">成交量</div>
-              <div class="stat-val" id="valVol">3,588万</div>
+              <div class="stat-val" id="valVol">4,233万</div>
             </div>
           </div>
         </div>
@@ -160,7 +169,6 @@
           <div id="klineChart" style="width:100%;height:220px;"></div>
         </div>
       </div>
-
       <div class="card" style="margin-top: 16px;">
         <div class="card-header">
           <div class="card-title">
@@ -183,11 +191,11 @@
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>今日股价大涨5.90%至1194.90元，盘中最高触及1199.99元，距1200元整数关口仅一步之遥，成交量放大至3588万股，资金抢筹明显。</span>
+              <span>今日股价大跌8.45%至1093.98元，盘中最低触及1093.98元，成交量放大至4233万股，资金获利了结明显，短期技术性回调。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
-              <span>估值方面，当前动态PE约48倍，处于历史偏高区间，需密切关注后续业绩增速能否支撑高估值，以及1.6T订单落地节奏。</span>
+              <span>估值方面，当前动态PE约44倍，经过今日回调后估值压力有所释放，需密切关注后续1.6T订单落地节奏和业绩增速能否持续。</span>
             </li>
             <li style="display: flex; gap: 8px; align-items: flex-start; color: var(--text-secondary); margin-top: 4px;">
               <span style="color: var(--accent-orange); font-weight: bold; flex-shrink: 0;">•</span>
@@ -198,179 +206,23 @@
       </div>
     </main>
   </div>
-
   <div class="toast" id="toast"></div>
   <script src="js/main.js"></script>
   <script>
     const stockDatabase = {
-      '300308': {
-        name: '中际旭创', code: '300308.SZ', price: 1194.90, change: 66.55, changePct: 5.90,
-        open: 1153, high: 1199.99, low: 1117.01, volume: '3,588万',
-        analysis: [
-          '中际旭创作为国内光模块绝对龙头，深度受益于全球AI算力建设浪潮，800G/1.6T产品持续放量，客户覆盖谷歌、英伟达、亚马逊等核心云厂商。',
-          '2026Q1营收同比增长142%，净利润增长185%，毛利率提升至36.8%，盈利能力持续增强，1.6T产品已小批量出货。',
-          '今日股价大涨5.90%至1194.90元，盘中最高触及1199.99元，距1200元整数关口仅一步之遥，成交量放大至3588万股，资金抢筹明显。',
-          '估值方面，当前动态PE约48倍，处于历史偏高区间，需密切关注后续业绩增速能否支撑高估值，以及1.6T订单落地节奏。',
-          '风险点：海外大客户订单波动、行业竞争加剧（新易盛等追赶）、技术迭代风险（CPO技术路线）、地缘政治导致的供应链不确定性。'
-        ]
-      },
-      '600519': {
-        name: '贵州茅台', code: '600519.SH', price: 1182.19, change: -17.11, changePct: -1.43,
-        open: 1191, high: 1191.99, low: 1178.00, volume: '340万',
-        analysis: [
-          '贵州茅台作为A股核心资产代表，品牌护城河深厚，飞天茅台批价维持在2200元以上，渠道库存健康，终端需求刚性。',
-          '2026Q1营收同比增长15.2%，净利润增长16.8%，增速稳健，直销渠道占比提升至48%，i茅台贡献持续增量。',
-          '今日股价微跌1.43%至1182.19元，成交缩量至340万股，显示抛压有限，更多是市场对消费复苏节奏的观望。',
-          '估值方面，当前PE约25倍，处于近五年中枢偏低位置，具备安全边际，适合作为组合底仓配置。',
-          '关注点：中秋节前批价走势、系列酒增长情况、分红比例是否有进一步提升空间。'
-        ]
-      },
-      '300750': {
-        name: '宁德时代', code: '300750.SZ', price: 375.50, change: 14.50, changePct: 4.02,
-        open: 361, high: 376.66, low: 360.07, volume: '3,779万',
-        analysis: [
-          '宁德时代全球动力电池市占率持续领先，2026Q1装机量同比增长22%，海外工厂（德国、匈牙利）产能爬坡顺利。',
-          '今日股价大涨4.02%至375.50元，伴随成交量放大至3779万股，市场对其凝聚态电池技术突破反应积极。',
-          '储能业务成为第二增长曲线，Q1储能电池出货同比增长45%，毛利率维持20%以上，盈利能力优于行业平均。',
-          '估值方面，当前动态PE约22倍，处于历史较低分位，考虑到其技术领先性和全球化布局，估值具备吸引力。',
-          '风险点：欧洲市场竞争加剧（LG、三星）、原材料价格波动、海外政策不确定性（IRA补贴变化）。'
-        ]
-      },
-      '002594': {
-        name: '比亚迪', code: '002594.SZ', price: 86.87, change: -0.93, changePct: -1.06,
-        open: 86.5, high: 87.77, low: 85.80, volume: '3,773万',
-        analysis: [
-          '比亚迪6月销量突破40万辆创历史新高，插混车型持续热销，海外出口单月超6万辆，全球化战略加速推进。',
-          '今日股价小幅下跌1.06%至86.87元，属于正常的技术性回调，成交量3773万股维持活跃，筹码换手健康。',
-          '高端品牌仰望、腾势销量稳步提升，单车ASP持续改善，品牌向上战略初见成效。',
-          '估值方面，当前PE约18倍，对比特斯拉等海外同行仍有折价，考虑到其销量增速和全球化空间，估值合理偏低。',
-          '关注点：下半年新车型投放节奏、海外工厂（泰国、巴西）投产进度、智能驾驶技术迭代。'
-        ]
-      },
-      '603259': {
-        name: '药明康德', code: '603259.SH', price: 121.07, change: 5.67, changePct: 4.91,
-        open: 115.01, high: 121.43, low: 114.52, volume: '5,832万',
-        analysis: [
-          '药明康德作为全球CXO龙头，一体化平台优势显著，在手订单充沛，2026Q1新增订单同比增长35%。',
-          '今日股价大涨4.91%至121.07元，成交量放大至5832万股，资金对生物医药板块情绪回暖，地缘政治风险有所缓释。',
-          '美国《生物安全法案》进展仍是最大不确定性，但公司积极拓展欧洲及新兴市场客户，降低单一市场依赖。',
-          '估值方面，当前PE约28倍，较历史高点仍有较大折价，若地缘政治风险解除，估值修复空间可观。',
-          '风险点：美国政策不确定性、行业竞争加剧（凯莱英、康龙化成）、创新药融资环境变化。'
-        ]
-      },
-      '688041': {
-        name: '海光信息', code: '688041.SH', price: 363.46, change: 20.46, changePct: 5.97,
-        open: 346.21, high: 363.85, low: 335.50, volume: '4,275万',
-        analysis: [
-          '海光信息是国内稀缺的高性能CPU/DCU设计企业，产品性能接近国际主流水平，深度受益于信创和AI算力国产替代。',
-          '今日股价大涨5.97%至363.46元，盘中振幅较大（335.50-363.85），成交活跃4275万股，显示多空博弈激烈。',
-          'DCU芯片获大型互联网公司批量采购，国产算力替代进入加速期，2026年出货量有望翻倍。',
-          '估值方面，当前PS约35倍，由于仍处于高投入期，用PS估值更合理，考虑到国产替代空间，估值具备支撑。',
-          '风险点：技术迭代落后风险、大客户集中度较高、与国际龙头（英伟达、AMD）性能差距。'
-        ]
-      },
-      '300502': {
-        name: '新易盛', code: '300502.SZ', price: 545.50, change: 34.66, changePct: 6.78,
-        open: 526, high: 549.94, low: 509.96, volume: '4,919万',
-        analysis: [
-          '新易盛是光模块行业第二梯队领军者，800G产品快速放量，客户结构持续优化，毛利率追赶中际旭创。',
-          '今日股价大涨6.78%至545.50元，成交量4919万股创近期新高，资金对光模块板块热情高涨。',
-          '2026Q1营收同比增长180%，净利润增长210%，增速超越行业龙头，市场份额提升逻辑持续验证。',
-          '估值方面，当前动态PE约42倍，考虑到其更高的业绩增速，PEG具备吸引力。',
-          '风险点：对单一客户依赖度较高、技术追赶压力、行业产能过剩风险。'
-        ]
-      },
-      '002475': {
-        name: '立讯精密', code: '002475.SZ', price: 64.46, change: 1.99, changePct: 3.19,
-        open: 62.8, high: 64.66, low: 59.70, volume: '1.9亿',
-        analysis: [
-          '立讯精密是苹果产业链核心供应商，AirPods、Apple Watch组装份额领先，Vision Pro产线已量产。',
-          '今日股价上涨3.19%至64.46元，成交量1.9亿股显著放大，盘中最低59.70元显示早盘有资金抄底。',
-          '汽车电子业务成为新增长点，与奇瑞合作造车进入落地期，长线布局智能座舱和域控制器。',
-          '估值方面，当前PE约20倍，处于历史中枢偏低位置，股息率约2.5%，具备防御属性。',
-          '风险点：苹果订单波动、消费电子需求疲软、汽车业务投入期亏损拖累。'
-        ]
-      }
+      '300308': { name: '中际旭创', code: '300308.SZ', price: 1093.98, change: -100.92, changePct: -8.45, open: 1210, high: 1218, low: 1093.98, volume: '4,233万', analysis: ['中际旭创作为国内光模块绝对龙头，深度受益于全球AI算力建设浪潮，800G/1.6T产品持续放量，客户覆盖谷歌、英伟达、亚马逊等核心云厂商。','2026Q1营收同比增长142%，净利润增长185%，毛利率提升至36.8%，盈利能力持续增强，1.6T产品已小批量出货。','今日股价大跌8.45%至1093.98元，盘中最低触及1093.98元，成交量放大至4233万股，资金获利了结明显，短期技术性回调。','估值方面，当前动态PE约44倍，经过今日回调后估值压力有所释放，需密切关注后续1.6T订单落地节奏和业绩增速能否持续。','风险点：海外大客户订单波动、行业竞争加剧（新易盛等追赶）、技术迭代风险（CPO技术路线）、地缘政治导致的供应链不确定性。'] },
+      '600519': { name: '贵州茅台', code: '600519.SH', price: 1204.98, change: 22.79, changePct: 1.93, open: 1191, high: 1205, low: 1185, volume: '350万', analysis: ['贵州茅台作为A股核心资产代表，品牌护城河深厚，飞天茅台批价维持在2200元以上，渠道库存健康，终端需求刚性。','2026Q1营收同比增长15.2%，净利润增长16.8%，增速稳健，直销渠道占比提升至48%，i茅台贡献持续增量。','今日股价微涨1.93%至1204.98元，在市场科技股大跌背景下表现抗跌，成交缩量至350万股，显示资金避险偏好。','估值方面，当前PE约25倍，处于近五年中枢偏低位置，具备安全边际，适合作为组合底仓配置。','关注点：中秋节前批价走势、系列酒增长情况、分红比例是否有进一步提升空间。'] },
+      '300750': { name: '宁德时代', code: '300750.SZ', price: 348.76, change: -26.74, changePct: -7.12, open: 368, high: 370, low: 348.76, volume: '4,000万', analysis: ['宁德时代全球动力电池市占率持续领先，2026Q1装机量同比增长22%，海外工厂（德国、匈牙利）产能爬坡顺利。','今日股价大跌7.12%至348.76元，伴随成交量放大至4000万股，市场对新能源车产业链情绪降温，资金获利了结。','储能业务成为第二增长曲线，Q1储能电池出货同比增长45%，毛利率维持20%以上，盈利能力优于行业平均。','估值方面，当前动态PE约20倍，处于历史较低分位，考虑到其技术领先性和全球化布局，估值具备吸引力。','风险点：欧洲市场竞争加剧（LG、三星）、原材料价格波动、海外政策不确定性（IRA补贴变化）。'] },
+      '002594': { name: '比亚迪', code: '002594.SZ', price: 90.00, change: 3.13, changePct: 3.60, open: 87, high: 91, low: 86.5, volume: '3,800万', analysis: ['比亚迪6月销量突破40万辆创历史新高，插混车型持续热销，海外出口单月超6万辆，全球化战略加速推进。','今日股价逆势上涨3.60%至90.00元，在市场大跌背景下表现亮眼，成交量3800万股维持活跃，资金认可度较高。','高端品牌仰望、腾势销量稳步提升，单车ASP持续改善，品牌向上战略初见成效。','估值方面，当前PE约19倍，对比特斯拉等海外同行仍有折价，考虑到其销量增速和全球化空间，估值合理偏低。','关注点：下半年新车型投放节奏、海外工厂（泰国、巴西）投产进度、智能驾驶技术迭代。'] },
+      '603259': { name: '药明康德', code: '603259.SH', price: 123.30, change: 2.23, changePct: 1.84, open: 121, high: 124, low: 120, volume: '5,800万', analysis: ['药明康德作为全球CXO龙头，一体化平台优势显著，在手订单充沛，2026Q1新增订单同比增长35%。','今日股价微涨1.84%至123.30元，在市场调整中表现相对稳健，成交量5800万股，资金对生物医药板块避险情绪明显。','美国《生物安全法案》进展仍是最大不确定性，但公司积极拓展欧洲及新兴市场客户，降低单一市场依赖。','估值方面，当前PE约29倍，较历史高点仍有较大折价，若地缘政治风险解除，估值修复空间可观。','风险点：美国政策不确定性、行业竞争加剧（凯莱英、康龙化成）、创新药融资环境变化。'] },
+      '688041': { name: '海光信息', code: '688041.SH', price: 353.00, change: -10.46, changePct: -2.88, open: 365, high: 366, low: 350, volume: '4,300万', analysis: ['海光信息是国内稀缺的高性能CPU/DCU设计企业，产品性能接近国际主流水平，深度受益于信创和AI算力国产替代。','今日股价下跌2.88%至353.00元，盘中振幅较大（350-366），成交活跃4300万股，显示多空博弈仍在继续。','DCU芯片获大型互联网公司批量采购，国产算力替代进入加速期，2026年出货量有望翻倍。','估值方面，当前PS约33倍，由于仍处于高投入期，用PS估值更合理，考虑到国产替代空间，估值具备支撑。','风险点：技术迭代落后风险、大客户集中度较高、与国际龙头（英伟达、AMD）性能差距。'] },
+      '300502': { name: '新易盛', code: '300502.SZ', price: 523.05, change: -22.45, changePct: -4.12, open: 545, high: 548, low: 520, volume: '5,000万', analysis: ['新易盛是光模块行业第二梯队领军者，800G产品快速放量，客户结构持续优化，毛利率追赶中际旭创。','今日股价下跌4.12%至523.05元，成交量5000万股，光模块板块整体承压，资金获利了结明显。','2026Q1营收同比增长180%，净利润增长210%，增速超越行业龙头，市场份额提升逻辑持续验证。','估值方面，当前动态PE约40倍，经过回调后PEG更具吸引力。','风险点：对单一客户依赖度较高、技术追赶压力、行业产能过剩风险。'] },
+      '002475': { name: '立讯精密', code: '002475.SZ', price: 62.14, change: -2.32, changePct: -3.60, open: 64, high: 64.5, low: 61.5, volume: '1.8亿', analysis: ['立讯精密是苹果产业链核心供应商，AirPods、Apple Watch组装份额领先，Vision Pro产线已量产。','今日股价下跌3.60%至62.14元，成交量1.8亿股，消费电子板块受市场整体情绪拖累，资金流出明显。','汽车电子业务成为新增长点，与奇瑞合作造车进入落地期，长线布局智能座舱和域控制器。','估值方面，当前PE约19倍，处于历史中枢偏低位置，股息率约2.5%，具备防御属性。','风险点：苹果订单波动、消费电子需求疲软、汽车业务投入期亏损拖累。'] }
     };
-
-    function doSearch() {
-      const query = document.getElementById('stockSearch').value.trim();
-      if (!query) return;
-      let found = null;
-      for (const key in stockDatabase) {
-        const s = stockDatabase[key];
-        if (s.code.includes(query) || s.name.includes(query)) { found = s; break; }
-      }
-      if (!found) { showToast('未找到该股票，请尝试输入完整代码或名称'); return; }
-      renderStock(found);
-    }
-
-    function renderStock(s) {
-      const up = s.change >= 0;
-      document.getElementById('stockName').textContent = s.name;
-      document.getElementById('stockCode').textContent = s.code;
-      const priceEl = document.getElementById('stockPrice');
-      priceEl.textContent = s.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-      priceEl.className = 'stock-price ' + (up ? 'up' : 'down');
-      const changeEl = document.getElementById('stockChange');
-      changeEl.textContent = (up ? '+' : '') + s.change.toFixed(2) + ' (' + (up ? '+' : '') + s.changePct.toFixed(2) + '%)';
-      changeEl.className = 'stock-change ' + (up ? 'up' : 'down');
-      document.getElementById('valOpen').textContent = s.open.toLocaleString();
-      document.getElementById('valHigh').textContent = s.high.toLocaleString();
-      document.getElementById('valHigh').className = 'stat-val up';
-      document.getElementById('valLow').textContent = s.low.toLocaleString();
-      document.getElementById('valLow').className = 'stat-val down';
-      document.getElementById('valVol').textContent = s.volume;
-      const analysisBody = document.getElementById('aiAnalysisBody');
-      analysisBody.innerHTML = '<ul style="padding-left:0;list-style:none;">' + s.analysis.map(a =>
-        '<li style="display:flex;gap:8px;align-items:flex-start;color:var(--text-secondary);margin-top:4px;"><span style="color:var(--accent-orange);font-weight:bold;flex-shrink:0;">•</span><span>' + a + '</span></li>'
-      ).join('') + '</ul>';
-      initKline(s.code);
-      showToast('已切换至 ' + s.name + ' ' + s.code);
-    }
-
-    function initKline(code) {
-      const chart = echarts.init(document.getElementById('klineChart'));
-      const data = [];
-      const base = code === '300308.SZ' ? 1100 : code === '600519.SH' ? 1200 : code === '300750.SZ' ? 360 : 80;
-      for (let i = 0; i < 30; i++) {
-        const open = base + (Math.random() - 0.5) * base * 0.08;
-        const close = open + (Math.random() - 0.5) * base * 0.06;
-        const low = Math.min(open, close) - Math.random() * base * 0.02;
-        const high = Math.max(open, close) + Math.random() * base * 0.02;
-        data.push([open.toFixed(2), close.toFixed(2), low.toFixed(2), high.toFixed(2)]);
-      }
-      chart.setOption({
-        backgroundColor: 'transparent',
-        tooltip: { trigger: 'axis', backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' } },
-        grid: { left: 50, right: 10, top: 10, bottom: 20 },
-        xAxis: { type: 'category', data: data.map((_, i) => 'D' + (i + 1)), axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', interval: 4 } },
-        yAxis: { type: 'value', splitLine: { lineStyle: { color: '#1a1d2e' } }, axisLabel: { color: '#5a5e72' }, scale: true },
-        series: [{
-          type: 'candlestick',
-          data: data,
-          itemStyle: { color: '#ff4242', color0: '#42ff8c', borderColor: '#ff4242', borderColor0: '#42ff8c' }
-        }]
-      });
-      window.addEventListener('resize', () => chart.resize());
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initKline('300308.SZ');
-      const searchInput = document.getElementById('stockSearch');
-      const suggestionList = document.getElementById('suggestionList');
-      searchInput.addEventListener('input', () => {
-        const val = searchInput.value.trim();
-        if (!val) { suggestionList.classList.remove('show'); return; }
-        const matches = Object.values(stockDatabase).filter(s => s.name.includes(val) || s.code.includes(val));
-        if (matches.length) {
-          suggestionList.innerHTML = matches.map(s => '<div class="suggestion-item" onclick="renderStock(stockDatabase[\'' + Object.keys(stockDatabase).find(k => stockDatabase[k] === s) + '\']); suggestionList.classList.remove(\'show\'); document.getElementById(\'stockSearch\').value = \'\';">' + s.name + ' ' + s.code + '</div>').join('');
-          suggestionList.classList.add('show');
-        } else { suggestionList.classList.remove('show'); }
-      });
-      searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
-      document.addEventListener('click', e => { if (!e.target.closest('.search-wrapper')) suggestionList.classList.remove('show'); });
-    });
+    function doSearch() { const query = document.getElementById('stockSearch').value.trim(); if (!query) return; let found = null; for (const key in stockDatabase) { const s = stockDatabase[key]; if (s.code.includes(query) || s.name.includes(query)) { found = s; break; } } if (!found) { showToast('未找到该股票，请尝试输入完整代码或名称'); return; } renderStock(found); }
+    function renderStock(s) { const up = s.change >= 0; document.getElementById('stockName').textContent = s.name; document.getElementById('stockCode').textContent = s.code; const priceEl = document.getElementById('stockPrice'); priceEl.textContent = s.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); priceEl.className = 'stock-price ' + (up ? 'up' : 'down'); const changeEl = document.getElementById('stockChange'); changeEl.textContent = (up ? '+' : '') + s.change.toFixed(2) + ' (' + (up ? '+' : '') + s.changePct.toFixed(2) + '%)'; changeEl.className = 'stock-change ' + (up ? 'up' : 'down'); document.getElementById('valOpen').textContent = s.open.toLocaleString(); document.getElementById('valHigh').textContent = s.high.toLocaleString(); document.getElementById('valHigh').className = 'stat-val up'; document.getElementById('valLow').textContent = s.low.toLocaleString(); document.getElementById('valLow').className = 'stat-val down'; document.getElementById('valVol').textContent = s.volume; const analysisBody = document.getElementById('aiAnalysisBody'); analysisBody.innerHTML = '<ul style="padding-left:0;list-style:none;">' + s.analysis.map(a => '<li style="display:flex;gap:8px;align-items:flex-start;color:var(--text-secondary);margin-top:4px;"><span style="color:var(--accent-orange);font-weight:bold;flex-shrink:0;">•</span><span>' + a + '</span></li>').join('') + '</ul>'; initKline(s.code); showToast('已切换至 ' + s.name + ' ' + s.code); }
+    function initKline(code) { const chart = echarts.init(document.getElementById('klineChart')); const data = []; const base = code === '300308.SZ' ? 1100 : code === '600519.SH' ? 1200 : code === '300750.SZ' ? 360 : 80; for (let i = 0; i < 30; i++) { const open = base + (Math.random() - 0.5) * base * 0.08; const close = open + (Math.random() - 0.5) * base * 0.06; const low = Math.min(open, close) - Math.random() * base * 0.02; const high = Math.max(open, close) + Math.random() * base * 0.02; data.push([open.toFixed(2), close.toFixed(2), low.toFixed(2), high.toFixed(2)]); } chart.setOption({ backgroundColor: 'transparent', tooltip: { trigger: 'axis', backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' } }, grid: { left: 50, right: 10, top: 10, bottom: 20 }, xAxis: { type: 'category', data: data.map((_, i) => 'D' + (i + 1)), axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', interval: 4 } }, yAxis: { type: 'value', splitLine: { lineStyle: { color: '#1a1d2e' } }, axisLabel: { color: '#5a5e72' }, scale: true }, series: [{ type: 'candlestick', data: data, itemStyle: { color: '#ff4242', color0: '#42ff8c', borderColor: '#ff4242', borderColor0: '#42ff8c' } }] }); window.addEventListener('resize', () => chart.resize()); }
+    document.addEventListener('DOMContentLoaded', () => { initKline('300308.SZ'); const searchInput = document.getElementById('stockSearch'); const suggestionList = document.getElementById('suggestionList'); searchInput.addEventListener('input', () => { const val = searchInput.value.trim(); if (!val) { suggestionList.classList.remove('show'); return; } const matches = Object.values(stockDatabase).filter(s => s.name.includes(val) || s.code.includes(val)); if (matches.length) { suggestionList.innerHTML = matches.map(s => '<div class="suggestion-item" onclick="renderStock(stockDatabase[\'' + Object.keys(stockDatabase).find(k => stockDatabase[k] === s) + '\']); suggestionList.classList.remove(\'show\'); document.getElementById(\'stockSearch\').value = \'\';">' + s.name + ' ' + s.code + '</div>').join(''); suggestionList.classList.add('show'); } else { suggestionList.classList.remove('show'); } }); searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); }); document.addEventListener('click', e => { if (!e.target.closest('.search-wrapper')) suggestionList.classList.remove('show'); }); });
   </script>
 </body>
 </html>
