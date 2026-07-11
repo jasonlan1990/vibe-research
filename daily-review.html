@@ -111,21 +111,46 @@
         <h2>每日复盘</h2>
         <p>AI 帮你总结今日市场全貌，提炼核心要点 · 更新于 2026-07-10 15:00</p>
       </div>
-      <div class="review-grid">
+      <div class="review-grid" style="grid-template-columns: repeat(4, 1fr);">
         <div class="review-stat-card">
           <div class="stat-label">上证指数</div>
           <div class="stat-value down">3,996.16</div>
           <div class="stat-change down">-40.43 (-1.00%)</div>
         </div>
         <div class="review-stat-card">
-          <div class="stat-label">深证成指</div>
-          <div class="stat-value down">15,046.67</div>
-          <div class="stat-change down">-352.06 (-2.29%)</div>
-        </div>
-        <div class="review-stat-card">
           <div class="stat-label">创业板指</div>
           <div class="stat-value down">3,842.73</div>
           <div class="stat-change down">-175.44 (-4.37%)</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">科创50</div>
+          <div class="stat-value down">1,355.20</div>
+          <div class="stat-change down">-78.50 (-5.47%)</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">北证50</div>
+          <div class="stat-value down">1,189.80</div>
+          <div class="stat-change down">-18.30 (-1.51%)</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">中证1000</div>
+          <div class="stat-value down">7,850.30</div>
+          <div class="stat-change down">-312.40 (-3.82%)</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">中证2000</div>
+          <div class="stat-value down">2,680.50</div>
+          <div class="stat-change down">-118.20 (-4.22%)</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">微盘股指数</div>
+          <div class="stat-value down">12,580.00</div>
+          <div class="stat-change down">-680.00 (-5.13%)</div>
+        </div>
+        <div class="review-stat-card">
+          <div class="stat-label">ST板块指数</div>
+          <div class="stat-value down">1,850.60</div>
+          <div class="stat-change down">-52.30 (-2.75%)</div>
         </div>
       </div>
       <div class="card">
@@ -138,7 +163,7 @@
             <span style="font-size:12px;color:var(--text-muted);">2026-07-10</span>
           </div>
         </div>
-        <div id="indexChart" style="width:100%;height:360px;"></div>
+        <div id="indexChart" style="width:100%;height:400px;"></div>
       </div>
       <div class="card">
         <div class="card-header">
@@ -182,7 +207,7 @@
             <span>板块热力图</span>
           </div>
         </div>
-        <div id="sectorHeatChart" style="width:100%;height:320px;"></div>
+        <div id="sectorHeatChart" style="width:100%;height:380px;"></div>
       </div>
     </main>
   </div>
@@ -192,10 +217,12 @@
     function initIndexChart() {
       const chart = echarts.init(document.getElementById('indexChart'));
       const times = [];
-      const shData = [];
-      const szData = [];
-      const cyData = [];
-      const baseSh = 4031.54, baseSz = 15480.41, baseCy = 4041.86;
+      const indices = {
+        '上证指数': { base: 4031.54, color: '#ff8c42', data: [] },
+        '创业板指': { base: 4041.86, color: '#ff42a8', data: [] },
+        '科创50': { base: 1540.00, color: '#42d3ff', data: [] },
+        '北证50': { base: 1280.00, color: '#a855f7', data: [] }
+      };
       for (let i = 0; i <= 240; i++) {
         const h = 9 + Math.floor(i / 60);
         const m = i % 60;
@@ -205,41 +232,70 @@
         const t = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
         times.push(t);
         const progress = i / 240;
-        shData.push((baseSh + Math.sin(progress * 3) * 20 - progress * 45 + Math.random() * 8).toFixed(2));
-        szData.push((baseSz + Math.sin(progress * 3) * 80 - progress * 520 + Math.random() * 30).toFixed(2));
-        cyData.push((baseCy + Math.sin(progress * 3) * 60 - progress * 280 + Math.random() * 25).toFixed(2));
+        indices['上证指数'].data.push((indices['上证指数'].base + Math.sin(progress * 3) * 20 - progress * 45 + Math.random() * 8).toFixed(2));
+        indices['创业板指'].data.push((indices['创业板指'].base + Math.sin(progress * 3) * 60 - progress * 280 + Math.random() * 25).toFixed(2));
+        indices['科创50'].data.push((indices['科创50'].base + Math.sin(progress * 3) * 40 - progress * 180 + Math.random() * 15).toFixed(2));
+        indices['北证50'].data.push((indices['北证50'].base + Math.sin(progress * 3) * 25 - progress * 90 + Math.random() * 10).toFixed(2));
       }
       chart.setOption({
         backgroundColor: 'transparent',
         tooltip: { trigger: 'axis', backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' } },
-        legend: { data: ['上证指数', '深证成指', '创业板指'], textStyle: { color: '#8b92a8' }, bottom: 0 },
+        legend: { data: Object.keys(indices), textStyle: { color: '#8b92a8' }, bottom: 0 },
         grid: { left: 60, right: 20, top: 20, bottom: 40 },
         xAxis: { type: 'category', data: times, axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', interval: 59 } },
         yAxis: { type: 'value', splitLine: { lineStyle: { color: '#1a1d2e' } }, axisLabel: { color: '#5a5e72' } },
-        series: [
-          { name: '上证指数', type: 'line', data: shData, smooth: true, symbol: 'none', lineStyle: { color: '#ff8c42', width: 2 }, itemStyle: { color: '#ff8c42' } },
-          { name: '深证成指', type: 'line', data: szData, smooth: true, symbol: 'none', lineStyle: { color: '#42d3ff', width: 2 }, itemStyle: { color: '#42d3ff' } },
-          { name: '创业板指', type: 'line', data: cyData, smooth: true, symbol: 'none', lineStyle: { color: '#ff42a8', width: 2 }, itemStyle: { color: '#ff42a8' } }
-        ]
+        series: Object.entries(indices).map(([name, cfg]) => ({
+          name, type: 'line', data: cfg.data, smooth: true, symbol: 'none',
+          lineStyle: { color: cfg.color, width: 2 }, itemStyle: { color: cfg.color }
+        }))
       });
       window.addEventListener('resize', () => chart.resize());
     }
     function initSectorHeat() {
       const chart = echarts.init(document.getElementById('sectorHeatChart'));
       const sectors = ['光模块', '半导体', '生物医药', '新能源', '机器人', '消费电子', '商业航天', 'AI应用', '汽车', '金融', '化工', '传媒'];
-      const changes = [-8.45, -4.37, -7.12, -2.88, -1.20, -1.00, 1.93, 3.60, -1.84, 1.84, -2.50, -3.60];
-      const colors = changes.map(v => v >= 0 ? '#ff4242' : '#42ff8c');
+      const changes = [-8.45, -4.37, 1.84, -2.88, -0.75, -1.00, 4.57, -3.60, -1.84, 1.93, -2.50, -3.60];
+      const data = changes.map((v, i) => ({
+        value: v,
+        itemStyle: {
+          color: v >= 0 ? '#ff4242' : '#42ff8c',
+          borderRadius: v >= 0 ? [4, 4, 0, 0] : [0, 0, 4, 4]
+        }
+      }));
       chart.setOption({
         backgroundColor: 'transparent',
-        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' }, formatter: p => p[0].name + ': ' + (p[0].value > 0 ? '+' : '') + p[0].value + '%' },
-        grid: { left: 80, right: 40, top: 10, bottom: 20 },
-        xAxis: { type: 'value', axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', formatter: '{value}%' }, splitLine: { lineStyle: { color: '#1a1d2e' } } },
-        yAxis: { type: 'category', data: sectors, axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#8b92a8' } },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' },
+          backgroundColor: 'rgba(19,22,37,0.95)',
+          borderColor: '#2a2e42',
+          textStyle: { color: '#fff' },
+          formatter: p => p[0].name + ': ' + (p[0].value > 0 ? '+' : '') + p[0].value + '%'
+        },
+        grid: { left: 60, right: 20, top: 30, bottom: 60 },
+        xAxis: {
+          type: 'category',
+          data: sectors,
+          axisLine: { lineStyle: { color: '#2a2e42' } },
+          axisLabel: { color: '#8b92a8', interval: 0, rotate: 30, fontSize: 11 }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: { lineStyle: { color: '#2a2e42' } },
+          axisLabel: { color: '#5a5e72', formatter: '{value}%' },
+          splitLine: { lineStyle: { color: '#1a1d2e' } }
+        },
         series: [{
           type: 'bar',
-          data: changes.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [0, 4, 4, 0] } })),
-          barWidth: 16,
-          label: { show: true, position: 'right', color: '#8b92a8', formatter: p => (p.value > 0 ? '+' : '') + p.value + '%' }
+          data: data,
+          barWidth: '60%',
+          label: {
+            show: true,
+            position: 'top',
+            color: '#8b92a8',
+            fontSize: 10,
+            formatter: p => (p.value > 0 ? '+' : '') + p.value + '%'
+          }
         }]
       });
       window.addEventListener('resize', () => chart.resize());
