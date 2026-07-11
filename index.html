@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>资讯雷达 - Vibe-Research</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-card); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: var(--radius-md); font-size: 13px; color: var(--text-secondary); z-index: 1000; opacity: 0; transition: all 0.3s ease; box-shadow: var(--shadow); }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .note-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 999; }
+    .note-modal.show { display: flex; }
+    .note-modal-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; width: 90%; max-width: 480px; }
+    .note-modal-content h3 { margin-bottom: 16px; font-size: 16px; }
+    .note-modal-content input, .note-modal-content textarea { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 14px; color: var(--text-primary); font-family: inherit; font-size: 14px; margin-bottom: 12px; outline: none; }
+    .note-modal-content textarea { resize: vertical; min-height: 80px; }
+    .note-modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+    .news-item .news-tag { font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--tag-chip); color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+    a.tab-btn { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px; }
+  </style>
 </head>
 <body>
   <div class="app-container">
@@ -129,7 +142,7 @@
           <div class="info-left">
             <span>108 个公开源 · 近 7 天</span>
             <span>·</span>
-            <span>更新于 2026-07-09 15:00</span>
+            <span>更新于 2026-07-10 15:00</span>
           </div>
           <div class="info-right">
             <button class="btn btn-primary" id="extractBtn">
@@ -218,11 +231,11 @@
             </div>
           </div>
           <ul class="ai-summary-body" id="summaryBody">
-            <li>阿里巴巴禁止员工使用Claude Code，企业AI工具管控趋严。</li>
-            <li>Anthropic推出Claude Science Beta，多智能体AI工作台赋能科学研究。</li>
-            <li>NVIDIA发布ASPIRE机器人框架，零样本任务性能达31%。</li>
-            <li>GPT-5.6三大模型传闻定档7月7日，或引行业关注。</li>
-            <li>光象科技完成数亿元天使轮融资，布局物理原生基座模型。</li>
+            <li>科技股遭遇大幅回调，AI芯片、光模块、新能源产业链集体重挫，资金获利了结明显。</li>
+            <li>中际旭创暴跌8.45%，宁德时代跌7.12%，创业板指跌超4%，市场风险偏好快速下降。</li>
+            <li>贵州茅台、比亚迪逆势上涨，防御性板块获资金避险青睐，市场风格短期切换。</li>
+            <li>北向资金净流出超60亿，外资对科技成长板块态度趋于谨慎，短期或延续震荡。</li>
+            <li>建议关注业绩确定性较高的防御性品种，科技板块待企稳后再考虑分批布局。</li>
           </ul>
           <div class="ai-summary-actions">
             <button class="ai-summary-btn" id="saveToNotesBtn">
@@ -233,62 +246,62 @@
         </div>
         <div class="news-list" id="newsList">
           <div class="news-item">
-            <span class="news-time">07-09 14:30</span>
+            <span class="news-time">07-10 14:30</span>
             <span class="news-source">TechCrunch</span>
-            <span class="news-title">OpenAI announces GPT-5.6 with multimodal reasoning breakthrough, stock AI names surge</span>
+            <span class="news-title">AI chip stocks tumble as investors lock in profits after recent rally, NVIDIA down 5%</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-09 13:15</span>
+            <span class="news-time">07-10 13:15</span>
             <span class="news-source">财联社</span>
-            <span class="news-title">中际旭创盘中触及1200元关口，光模块龙头持续受益于AI算力扩容</span>
+            <span class="news-title">中际旭创暴跌8.45%跌破1100元，光模块板块获利盘集中兑现</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-09 11:45</span>
+            <span class="news-time">07-10 11:45</span>
             <span class="news-source">Reuters</span>
             <span class="news-title">China EV sales hit record high in June, BYD and NIO lead monthly deliveries</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-09 10:20</span>
+            <span class="news-time">07-10 10:20</span>
             <span class="news-source">36Kr</span>
-            <span class="news-title">宁德时代发布新一代凝聚态电池，能量密度突破500Wh/kg</span>
+            <span class="news-title">宁德时代大跌7.12%，新能源产业链集体回调，资金避险情绪升温</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-09 09:55</span>
+            <span class="news-time">07-10 09:55</span>
             <span class="news-source">Bloomberg</span>
-            <span class="news-title">NVIDIA supply chain partners see 40% order growth in Q3, sources say</span>
+            <span class="news-title">NVIDIA supply chain partners see order cuts in Q3, sources say</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-09 08:30</span>
+            <span class="news-time">07-10 08:30</span>
             <span class="news-source">证券时报</span>
-            <span class="news-title">创业板指大涨超4%，科技股全线爆发，北向资金净流入超80亿</span>
+            <span class="news-title">创业板指大跌超4%，科技股全线重挫，北向资金净流出超60亿</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-08 22:00</span>
+            <span class="news-time">07-09 22:00</span>
             <span class="news-source">The Verge</span>
             <span class="news-title">Apple Intelligence rollout expands to 12 new countries, Siri upgrade delayed</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-08 20:45</span>
+            <span class="news-time">07-09 20:45</span>
             <span class="news-source">华尔街见闻</span>
             <span class="news-title">药明康德Q2业绩超预期，在手订单同比增长35%，海外业务稳健</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-08 18:10</span>
+            <span class="news-time">07-09 18:10</span>
             <span class="news-source">TechCrunch</span>
             <span class="news-title">Midjourney V7 launches with real-time video generation, challenging Runway</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-08 16:30</span>
+            <span class="news-time">07-09 16:30</span>
             <span class="news-source">雪球</span>
             <span class="news-title">海光信息DCU芯片获大型互联网公司批量采购，国产算力替代加速</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-08 14:20</span>
+            <span class="news-time">07-09 14:20</span>
             <span class="news-source">Financial Times</span>
             <span class="news-title">Global semiconductor equipment spending to rise 15% in 2026, SEMI reports</span>
           </div>
           <div class="news-item">
-            <span class="news-time">07-08 12:00</span>
+            <span class="news-time">07-09 12:00</span>
             <span class="news-source">第一财经</span>
             <span class="news-title">新易盛800G光模块出货量环比增长50%，海外云厂商 capex 指引上调</span>
           </div>
