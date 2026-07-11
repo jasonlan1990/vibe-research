@@ -101,8 +101,8 @@ npx serve .
 
 ## 📬 联系作者
 
-- 作者：Simon Lin
-- 网站：[simonlin.net](https://simonlin.net)
+- 作者：JasonLAN
+- 邮箱：[jasenlan@163.com](mailto:jasenlan@163.com)
 
 ## 📄 License
 
