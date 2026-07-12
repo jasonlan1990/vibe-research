@@ -218,8 +218,14 @@
       const chart = echarts.init(document.getElementById('indexChart'));
       const times = [];
       const shData = [];
-      const baseSh = 4031.54;
-      for (let i = 0; i <= 240; i++) {
+      const volData = [];
+      const baseSh = 4036.59; // 昨收
+      const targetClose = 3996.16; // 收盘
+      const totalPoints = 240;
+      let lastPrice = baseSh;
+
+      // 生成更真实的分时数据
+      for (let i = 0; i <= totalPoints; i++) {
         const h = 9 + Math.floor(i / 60);
         const m = i % 60;
         if (h === 11 && m > 30) continue;
@@ -227,18 +233,176 @@
         if (h === 13 && m < 1) { i += 59; continue; }
         const t = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
         times.push(t);
-        const progress = i / 240;
-        shData.push((baseSh + Math.sin(progress * 3) * 20 - progress * 45 + Math.random() * 8).toFixed(2));
+
+        // 更真实的随机波动
+        const progress = i / totalPoints;
+        const trend = (targetClose - baseSh) * progress; // 整体下跌趋势
+        const cycle = Math.sin(progress * 8) * 18 + Math.sin(progress * 3.5) * 12 + Math.sin(progress * 15) * 6;
+        const noise = (Math.random() - 0.5) * 12;
+        const jump = (Math.random() > 0.92) ? (Math.random() - 0.5) * 20 : 0; // 偶尔跳价
+
+        let price = baseSh + trend + cycle + noise + jump;
+        // 确保价格在合理范围内
+        price = Math.max(baseSh - 55, Math.min(baseSh + 25, price));
+        price = price.toFixed(2);
+        shData.push(price);
+        lastPrice = parseFloat(price);
+
+        // 成交量：开盘和尾盘量大，中午量小
+        const volBase = 8000000 + Math.random() * 4000000;
+        const volBoost = (progress < 0.05 || progress > 0.92) ? 1.8 : 1.0;
+        const volSpike = (Math.random() > 0.9) ? 1.5 : 1.0;
+        volData.push(Math.floor(volBase * volBoost * volSpike));
       }
+
+      // 板块标签数据
+      const sectorTags = [
+        { name: '央企改革', x: '09:35', y: 4025, color: '#42ff8c' },
+        { name: '海外业务', x: '09:38', y: 4030, color: '#42ff8c' },
+        { name: '中报预增', x: '09:42', y: 4022, color: '#42ff8c' },
+        { name: '存储芯片', x: '09:45', y: 4012, color: '#ff4242' },
+        { name: '商业航天', x: '09:50', y: 4018, color: '#42ff8c' },
+        { name: '人形机器人', x: '09:55', y: 4028, color: '#42ff8c' },
+        { name: '创新药', x: '10:05', y: 4033, color: '#42ff8c' },
+        { name: 'AI服务器', x: '10:10', y: 4036, color: '#42ff8c' },
+        { name: '液冷服务器', x: '10:20', y: 4034, color: '#42ff8c' },
+        { name: '数据中心电源', x: '10:25', y: 4031, color: '#42ff8c' },
+        { name: '汽车零部件', x: '10:35', y: 4008, color: '#ff4242' },
+        { name: '电子皮肤', x: '10:45', y: 4015, color: '#42ff8c' },
+        { name: '卫星互联网', x: '10:50', y: 4019, color: '#42ff8c' },
+        { name: '军工通信', x: '11:00', y: 4030, color: '#42ff8c' },
+        { name: 'CRO', x: '11:05', y: 4027, color: '#42ff8c' },
+        { name: '扭亏为盈', x: '11:15', y: 4032, color: '#42ff8c' },
+        { name: '先进封装', x: '11:20', y: 4029, color: '#42ff8c' },
+        { name: '风电', x: '11:25', y: 4035, color: '#42ff8c' },
+        { name: '黄金', x: '13:10', y: 4020, color: '#42ff8c' },
+        { name: '半导体设备', x: '13:15', y: 4010, color: '#ff4242' },
+        { name: 'PCB', x: '13:25', y: 4016, color: '#42ff8c' },
+        { name: 'AI营销', x: '13:35', y: 4013, color: '#42ff8c' },
+        { name: '反无人机', x: '13:50', y: 4005, color: '#42ff8c' },
+        { name: '算力租赁', x: '14:00', y: 4002, color: '#42ff8c' },
+        { name: '回购炸板:2', x: '14:15', y: 3998, color: '#ff4242' },
+        { name: '商业航天', x: '14:30', y: 3995, color: '#42ff8c' },
+        { name: '摘牌', x: '14:45', y: 3992, color: '#ff4242' },
+        { name: '回购', x: '14:50', y: 3988, color: '#ff4242' }
+      ];
+
+      // 找到标签对应的数据索引
+      const tagData = sectorTags.map(tag => {
+        const idx = times.indexOf(tag.x);
+        return {
+          name: tag.name,
+          xAxis: tag.x,
+          yAxis: tag.y,
+          itemStyle: { color: tag.color },
+          label: {
+            show: true,
+            formatter: tag.name,
+            color: tag.color,
+            fontSize: 10,
+            backgroundColor: 'rgba(13,15,26,0.85)',
+            borderColor: tag.color,
+            borderWidth: 1,
+            borderRadius: 3,
+            padding: [2, 6]
+          },
+          symbol: 'none'
+        };
+      });
+
       chart.setOption({
         backgroundColor: 'transparent',
-        tooltip: { trigger: 'axis', backgroundColor: 'rgba(19,22,37,0.95)', borderColor: '#2a2e42', textStyle: { color: '#fff' } },
+        tooltip: {
+          trigger: 'axis',
+          backgroundColor: 'rgba(19,22,37,0.95)',
+          borderColor: '#2a2e42',
+          textStyle: { color: '#fff' },
+          axisPointer: { type: 'cross', label: { backgroundColor: '#6a7985' } }
+        },
         legend: { data: ['上证指数'], textStyle: { color: '#8b92a8' }, bottom: 0 },
-        grid: { left: 60, right: 20, top: 20, bottom: 40 },
-        xAxis: { type: 'category', data: times, axisLine: { lineStyle: { color: '#2a2e42' } }, axisLabel: { color: '#5a5e72', interval: 59 } },
-        yAxis: { type: 'value', splitLine: { lineStyle: { color: '#1a1d2e' } }, axisLabel: { color: '#5a5e72' } },
+        grid: [
+          { left: 60, right: 60, top: 40, bottom: 100 },
+          { left: 60, right: 60, top: '78%', bottom: 40, height: '18%' }
+        ],
+        xAxis: [
+          {
+            type: 'category',
+            data: times,
+            gridIndex: 0,
+            axisLine: { lineStyle: { color: '#2a2e42' } },
+            axisLabel: { color: '#5a5e72', interval: 59 },
+            axisTick: { show: false }
+          },
+          {
+            type: 'category',
+            data: times,
+            gridIndex: 1,
+            axisLine: { show: false },
+            axisLabel: { show: false },
+            axisTick: { show: false }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            gridIndex: 0,
+            min: 3970,
+            max: 4050,
+            splitLine: { lineStyle: { color: '#1a1d2e' } },
+            axisLabel: {
+              color: '#5a5e72',
+              formatter: function(value) {
+                const pct = ((value - baseSh) / baseSh * 100).toFixed(2);
+                return value.toFixed(0) + '\n' + (pct >= 0 ? '+' : '') + pct + '%';
+              }
+            }
+          },
+          {
+            type: 'value',
+            gridIndex: 1,
+            splitLine: { show: false },
+            axisLabel: { show: false }
+          }
+        ],
         series: [
-          { name: '上证指数', type: 'line', data: shData, smooth: true, symbol: 'none', lineStyle: { color: '#ff8c42', width: 2 }, itemStyle: { color: '#ff8c42' }, areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(255,140,66,0.15)' }, { offset: 1, color: 'rgba(255,140,66,0)' }] } } }
+          {
+            name: '上证指数',
+            type: 'line',
+            data: shData,
+            smooth: 0.3,
+            symbol: 'none',
+            lineStyle: { color: '#ff8c42', width: 1.5 },
+            itemStyle: { color: '#ff8c42' },
+            areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(255,140,66,0.12)' }, { offset: 1, color: 'rgba(255,140,66,0)' }] } },
+            markPoint: {
+              data: tagData,
+              symbolSize: 1,
+              label: {
+                position: 'top',
+                distance: 5
+              }
+            },
+            markLine: {
+              silent: true,
+              symbol: 'none',
+              data: [
+                { yAxis: baseSh, lineStyle: { color: '#5a5e72', type: 'dashed', width: 1 }, label: { show: false } }
+              ]
+            }
+          },
+          {
+            name: '成交量',
+            type: 'bar',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            data: volData.map((v, i) => ({
+              value: v,
+              itemStyle: {
+                color: shData[i] >= (i > 0 ? shData[i-1] : baseSh) ? 'rgba(255,66,66,0.6)' : 'rgba(66,255,140,0.6)'
+              }
+            })),
+            barWidth: '60%'
+          }
         ]
       });
       window.addEventListener('resize', () => chart.resize());
