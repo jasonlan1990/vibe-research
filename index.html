@@ -17,6 +17,25 @@
     .note-modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
     .news-item .news-tag { font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--tag-chip); color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
     a.tab-btn { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px; }
+    .tag-cloud .btn-tag { cursor: pointer; transition: all 0.2s ease; }
+    .tag-cloud .btn-tag:hover { transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    .tag-cloud .btn-tag.active { box-shadow: 0 0 0 2px var(--accent-primary); }
+    .all-summary-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 998; padding: 20px; }
+    .all-summary-modal.show { display: flex; }
+    .all-summary-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); width: 90%; max-width: 800px; max-height: 85vh; overflow-y: auto; padding: 24px; }
+    .all-summary-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+    .all-summary-header h3 { font-size: 18px; color: var(--text-primary); }
+    .all-summary-close { background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; padding: 4px; }
+    .all-summary-close:hover { color: var(--text-primary); }
+    .all-category { margin-bottom: 20px; }
+    .all-category-title { font-size: 14px; font-weight: 600; color: var(--accent-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .all-category-list { list-style: none; padding: 0; margin: 0; }
+    .all-category-list li { font-size: 13px; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid rgba(42,46,66,0.3); line-height: 1.6; }
+    .all-category-list li:last-child { border-bottom: none; }
+    .source-badge { font-size: 11px; color: var(--accent-cyan); background: rgba(52,211,153,0.1); padding: 1px 6px; border-radius: 4px; margin-right: 6px; white-space: nowrap; }
+    .date-badge { font-size: 11px; color: var(--text-muted); font-family: monospace; margin-right: 4px; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .summary-animate { animation: fadeIn 0.3s ease; }
   </style>
 </head>
 <body>
@@ -231,13 +250,11 @@
             </div>
           </div>
           <ul class="ai-summary-body" id="summaryBody">
-            <li>7月14日A股：沪指+0.05%深成指+0.58%创业板指+0.62%，成交额1.65万亿，AI算力链分化反弹。</li>
-            <li>SK海力士ADR首日涨14%持续提振HBM板块，兆易创新涨2.42%，存储芯片全面回暖。</li>
-            <li>药明康德半年报净利润预增101.92%大超预期，CRO板块逆势大涨2.80%，成为资金避风港。</li>
-            <li>美股三大指数周一收涨，道指+0.32%纳指+0.41%，苹果涨3.5%创历史新高，科技股持续修复。</li>
-            <li>特朗普关税政策落地倒计时，8月1日对欧盟/墨西哥30%关税、日韩25%-40%，出口链承压。</li>
-            <li>中报业绩预告密集披露期，7月15日主板强制截止，AI算力链、化工、半导体业绩亮眼。</li>
-            <li>国内政策面积极，上交所科创成长层、深交所综指修订、险资长周期考核优化，资本市场改革深化。</li>
+            <li>07-14 华尔街见闻：美股科技股持续修复，苹果涨3.5%创历史新高，Meta+5.97%英伟达+4.03%</li>
+            <li>07-14 财联社：A股AI算力链分化反弹，中际旭创回升至1145元(+2.23%)，寒武纪调整-2.17%</li>
+            <li>07-13 华尔街见闻：SK海力士ADR上市首日涨14%，崔泰源称将加码在美AI数据中心投资</li>
+            <li>07-15 财联社：中报强制披露截止日，AI算力链（光模块/服务器/芯片）业绩预期乐观</li>
+            <li>07-14 新华社：工信部推动两化深度融合，AI赋能制造业数字化转型加速</li>
           </ul>
           <div class="ai-summary-actions">
             <button class="ai-summary-btn" id="saveToNotesBtn">
@@ -247,62 +264,62 @@
           </div>
         </div>
         <div class="news-list" id="newsList">
-          <div class="news-item">
+          <div class="news-item" data-tags="ai finance">
             <span class="news-time">07-15 08:00</span>
             <span class="news-source">财联社</span>
             <span class="news-title">7月15日盘前速递：中报强制披露截止日，AI算力链与CRO板块或成焦点</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="ai tech">
             <span class="news-time">07-14 22:00</span>
             <span class="news-source">华尔街见闻</span>
             <span class="news-title">美股周一：道指+0.32%纳指+0.41%，苹果涨3.5%创历史新高，AI概念持续修复</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="finance">
             <span class="news-time">07-14 20:00</span>
             <span class="news-source">新浪财经</span>
             <span class="news-title">7月14日A股：沪指+0.05%深成指+0.58%创业板指+0.62%，成交额1.65万亿</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="biotech">
             <span class="news-time">07-14 18:00</span>
             <span class="news-source">证券时报</span>
             <span class="news-title">药明康德半年报净利润预增101.92%大超预期，CRO板块逆势大涨2.80%</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="semiconductor">
             <span class="news-time">07-14 15:00</span>
             <span class="news-source">财联社</span>
             <span class="news-title">HBM板块全面走强：兆易创新涨2.42%领涨，SK海力士ADR+14%持续发酵</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="tech security">
             <span class="news-time">07-14 12:00</span>
             <span class="news-source">新华社</span>
             <span class="news-title">工信部：推动"两化"深度融合，加快工业互联网平台建设与规模化应用</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="finance">
             <span class="news-time">07-14 07:30</span>
             <span class="news-source">财联社</span>
             <span class="news-title">特朗普8月1日对欧盟/墨西哥征收30%关税倒计时，出口链企业面临压力测试</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="semiconductor">
             <span class="news-time">07-13 22:00</span>
             <span class="news-source">华尔街见闻</span>
             <span class="news-title">SK海力士ADR上市首日开盘涨14%，崔泰源：将加码在美AI数据中心投资</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="tech">
             <span class="news-time">07-13 15:00</span>
             <span class="news-source">上交所</span>
             <span class="news-title">上交所发布科创成长层指引，32家未盈利企业进入，股票简称加"U"标识</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="finance">
             <span class="news-time">07-13 12:00</span>
             <span class="news-source">财政部</span>
             <span class="news-title">财政部引导保险资金长期稳健投资，长周期考核权重调整为30%+50%+20%</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="tech robot">
             <span class="news-time">07-12 10:00</span>
             <span class="news-source">工信部</span>
             <span class="news-title">工信部发布信息化和工业化融合2025年工作要点，推进制造业数字化转型</span>
           </div>
-          <div class="news-item">
+          <div class="news-item" data-tags="finance">
             <span class="news-time">07-12 09:00</span>
             <span class="news-source">深交所</span>
             <span class="news-title">深交所修订创业板综指编制方案，引入ST剔除和ESG负面剔除机制</span>
@@ -323,9 +340,318 @@
       </div>
     </div>
   </div>
+  <div class="all-summary-modal" id="allSummaryModal">
+    <div class="all-summary-content">
+      <div class="all-summary-header">
+        <h3>🔮 全部 12 个分类要点提炼</h3>
+        <button class="all-summary-close" onclick="closeAllSummaryModal()">&times;</button>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">🧠 AI / 大模型</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">华尔街见闻：美股科技股持续修复，苹果涨3.5%创历史新高，Meta+5.97%英伟达+4.03%</span>07-14 华尔街见闻：美股科技股持续修复，苹果涨3.5%创历史新高，Meta+5.97%英伟达+4.03%</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：A股AI算力链分化反弹，中际旭创回升至1145元(+2.23%)，寒武纪调整-2.17%</span>07-14 财联社：A股AI算力链分化反弹，中际旭创回升至1145元(+2.23%)，寒武纪调整-2.17%</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">华尔街见闻：SK海力士ADR上市首日涨14%，崔泰源称将加码在美AI数据中心投资</span>07-13 华尔街见闻：SK海力士ADR上市首日涨14%，崔泰源称将加码在美AI数据中心投资</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报强制披露截止日，AI算力链（光模块/服务器/芯片）业绩预期乐观</span>07-15 财联社：中报强制披露截止日，AI算力链（光模块/服务器/芯片）业绩预期乐观</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：工信部推动两化深度融合，AI赋能制造业数字化转型加速</span>07-14 新华社：工信部推动两化深度融合，AI赋能制造业数字化转型加速</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">💾 半导体 / 芯片</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：HBM板块全面走强，兆易创新涨2.42%领涨，存储芯片全面回暖</span>07-14 财联社：HBM板块全面走强，兆易创新涨2.42%领涨，存储芯片全面回暖</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">新浪财经：三星HBM4认证加速，有望三季度获英伟达认证，存储高景气延续</span>07-13 新浪财经：三星HBM4认证加速，有望三季度获英伟达认证，存储高景气延续</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">A股：半导体板块涨1.80%，受益于AI算力需求持续强劲，设备材料同步上涨</span>07-14 A股：半导体板块涨1.80%，受益于AI算力需求持续强劲，设备材料同步上涨</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，半导体产业链业绩预期乐观，设备龙头订单饱满</span>07-15 财联社：中报截止日，半导体产业链业绩预期乐观，设备龙头订单饱满</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">上交所：科创成长层指引发布，32家未盈利半导体企业进入，融资环境改善</span>07-13 上交所：科创成长层指引发布，32家未盈利半导体企业进入，融资环境改善</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">🤖 机器人 / 自动化</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：世界机器人大会圆满落幕，绿的谐波+1.03%，板块进入震荡整固期</span>07-14 财联社：世界机器人大会圆满落幕，绿的谐波+1.03%，板块进入震荡整固期</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">证券时报：特斯拉Optimus产线升级，量产时间节点进一步明确，供应链订单饱满</span>07-13 证券时报：特斯拉Optimus产线升级，量产时间节点进一步明确，供应链订单饱满</li>
+          <li><span class="date-badge">07-11</span><span class="source-badge">财联社：2026"机器人+"创新发展大会举行，聚焦具身智能与产业化，政策催化密集</span>07-11 财联社：2026"机器人+"创新发展大会举行，聚焦具身智能与产业化，政策催化密集</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：工信部推动制造业数字化转型，工业机器人渗透率持续提升</span>07-14 新华社：工信部推动制造业数字化转型，工业机器人渗透率持续提升</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，机器人核心零部件企业业绩预期向好</span>07-15 财联社：中报截止日，机器人核心零部件企业业绩预期向好</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">🚗 汽车 / 新能源车</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">A股：比亚迪涨1.11%至91元，宁德时代涨1.79%至355元，新能源整车表现稳健</span>07-14 A股：比亚迪涨1.11%至91元，宁德时代涨1.79%至355元，新能源整车表现稳健</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">新华社：中美外长会晤释放积极信号，有利于中美汽车贸易环境改善</span>07-13 新华社：中美外长会晤释放积极信号，有利于中美汽车贸易环境改善</li>
+          <li><span class="date-badge">07-10</span><span class="source-badge">财联社：6月新能源车销量同比增长35%，渗透率突破45%，全年销量有望超预期</span>07-10 财联社：6月新能源车销量同比增长35%，渗透率突破45%，全年销量有望超预期</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">华尔街见闻：苹果造车项目虽终止，但CarPlay生态扩展利好智能座舱供应链</span>07-14 华尔街见闻：苹果造车项目虽终止，但CarPlay生态扩展利好智能座舱供应链</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，新能源车产业链（电池/材料/整车）业绩分化明显</span>07-15 财联社：中报截止日，新能源车产业链（电池/材料/整车）业绩分化明显</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">⚡ 能源 / 新能源</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：稀土永磁板块继续强势，北方稀土涨3.2%，三季度精矿价格上调1.5%</span>07-14 财联社：稀土永磁板块继续强势，北方稀土涨3.2%，三季度精矿价格上调1.5%</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">新浪财经：WTI原油突破73美元/桶(+1.41%)，能源板块受益，油气企业盈利改善</span>07-13 新浪财经：WTI原油突破73美元/桶(+1.41%)，能源板块受益，油气企业盈利改善</li>
+          <li><span class="date-badge">07-11</span><span class="source-badge">六大行：存款利率下调至1.35%，降息周期持续，利好新能源等高景气赛道估值</span>07-11 六大行：存款利率下调至1.35%，降息周期持续，利好新能源等高景气赛道估值</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：国家能源局推动新型储能规模化发展，储能装机量持续高增</span>07-14 新华社：国家能源局推动新型储能规模化发展，储能装机量持续高增</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，光伏/风电龙头企业业绩预期分化，储能延续高增</span>07-15 财联社：中报截止日，光伏/风电龙头企业业绩预期分化，储能延续高增</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">💊 生物医药 / 健康</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">证券时报：药明康德半年报净利润预增101.92%大超预期，CRO板块逆势大涨2.80%</span>07-14 证券时报：药明康德半年报净利润预增101.92%大超预期，CRO板块逆势大涨2.80%</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">证券时报：医保预申报机制落地，创新药8年价格保护正式生效，行业政策面向好</span>07-13 证券时报：医保预申报机制落地，创新药8年价格保护正式生效，行业政策面向好</li>
+          <li><span class="date-badge">07-11</span><span class="source-badge">财联社：医保DRG/DIP</span>2.0版发布，创新药和器械获倾斜，支付改革深化</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">A股：恒瑞医药+1.85%、迈瑞医疗+0.99%，医药板块防御属性凸显，资金避险</span>07-14 A股：恒瑞医药+1.85%、迈瑞医疗+0.99%，医药板块防御属性凸显，资金避险</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，CRO/CDMO业绩亮眼，创新药企出海加速</span>07-15 财联社：中报截止日，CRO/CDMO业绩亮眼，创新药企出海加速</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">🚀 航天 / 太空</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：商业航天板块高位震荡，中国卫通涨3.5%(不再涨停)，个股分化加剧</span>07-14 财联社：商业航天板块高位震荡，中国卫通涨3.5%(不再涨停)，个股分化加剧</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">新华社：长征十号乙回收细节披露，网系捕获技术全球首创，商业化前景广阔</span>07-13 新华社：长征十号乙回收细节披露，网系捕获技术全球首创，商业化前景广阔</li>
+          <li><span class="date-badge">07-11</span><span class="source-badge">中国航天：2026下半年卫星互联网发射计划密集，商业航天进入加速期</span>07-11 中国航天：2026下半年卫星互联网发射计划密集，商业航天进入加速期</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：工信部推动航天装备智能化，航天产业链景气度维持高位</span>07-14 新华社：工信部推动航天装备智能化，航天产业链景气度维持高位</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，航天电子/卫星通信企业订单饱满，业绩预期向好</span>07-15 财联社：中报截止日，航天电子/卫星通信企业订单饱满，业绩预期向好</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">🔒 网络安全</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：工信部推动两化深度融合，网络安全成为工业互联网建设重点保障</span>07-14 新华社：工信部推动两化深度融合，网络安全成为工业互联网建设重点保障</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">财政部：险资长周期考核优化，网络安全等科技领域或获增量长期资金配置</span>07-13 财政部：险资长周期考核优化，网络安全等科技领域或获增量长期资金配置</li>
+          <li><span class="date-badge">07-12</span><span class="source-badge">工信部：信息化和工业化融合2025工作要点，网络安全能力升级成核心任务</span>07-12 工信部：信息化和工业化融合2025工作要点，网络安全能力升级成核心任务</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：数据安全法实施三周年，企业合规需求持续释放，行业景气度上行</span>07-14 财联社：数据安全法实施三周年，企业合规需求持续释放，行业景气度上行</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，网络安全龙头企业订单增速维持20%以上</span>07-15 财联社：中报截止日，网络安全龙头企业订单增速维持20%以上</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">💻 科技 / 互联网</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">华尔街见闻：美股科技股大涨，苹果+3.5%创历史新高，Meta+5.97%英伟达+4.03%</span>07-14 华尔街见闻：美股科技股大涨，苹果+3.5%创历史新高，Meta+5.97%英伟达+4.03%</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：A股科技板块分化，光模块反弹(+1.80%)、半导体走强、AI芯片调整</span>07-14 财联社：A股科技板块分化，光模块反弹(+1.80%)、半导体走强、AI芯片调整</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">上交所：科创成长层指引发布，32家未盈利科技企业进入，资本市场支持硬科技</span>07-13 上交所：科创成长层指引发布，32家未盈利科技企业进入，资本市场支持硬科技</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：工信部推动科技自立自强，集成电路/AI/量子计算获政策重点支持</span>07-14 新华社：工信部推动科技自立自强，集成电路/AI/量子计算获政策重点支持</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，科技互联网巨头业绩分化，AI投入持续加大</span>07-15 财联社：中报截止日，科技互联网巨头业绩分化，AI投入持续加大</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">📱 消费电子 / 数码</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：消费电子板块受益AI端侧创新，存储芯片涨价传导至终端产品</span>07-14 财联社：消费电子板块受益AI端侧创新，存储芯片涨价传导至终端产品</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">彭博：iPhone</span>17系列进入量产准备，苹果供应链订单饱满，立讯/歌尔受益</li>
+          <li><span class="date-badge">07-11</span><span class="source-badge">工信部：智能制造升级推动消费电子产业数字化转型，AR/VR新品密集发布</span>07-11 工信部：智能制造升级推动消费电子产业数字化转型，AR/VR新品密集发布</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">A股：消费电子指数涨0.80%，AI手机/PC换机周期启动，面板价格企稳</span>07-14 A股：消费电子指数涨0.80%，AI手机/PC换机周期启动，面板价格企稳</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，消费电子龙头Q2业绩环比改善，库存去化完成</span>07-15 财联社：中报截止日，消费电子龙头Q2业绩环比改善，库存去化完成</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">💰 财经 / 宏观</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-14</span><span class="source-badge">财联社：特朗普8月1日关税倒计时，对欧盟/墨西哥30%、日韩25%-40%，出口链承压</span>07-14 财联社：特朗普8月1日关税倒计时，对欧盟/墨西哥30%、日韩25%-40%，出口链承压</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">财政部：险资长周期考核权重调整为30%(当年)+50%(三年)+20%(五年)，引导长期配置</span>07-13 财政部：险资长周期考核权重调整为30%(当年)+50%(三年)+20%(五年)，引导长期配置</li>
+          <li><span class="date-badge">07-13</span><span class="source-badge">上交所/深交所：科创板成长层、创业板综指修订，资本市场改革深化</span>07-13 上交所/深交所：科创板成长层、创业板综指修订，资本市场改革深化</li>
+          <li><span class="date-badge">07-12</span><span class="source-badge">六大行：存款利率下调至1.35%，降息周期持续，利好权益资产估值</span>07-12 六大行：存款利率下调至1.35%，降息周期持续，利好权益资产估值</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：中美外长会晤释放积极信号，双边经贸关系有望稳定发展</span>07-14 新华社：中美外长会晤释放积极信号，双边经贸关系有望稳定发展</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，银行/券商/保险业绩分化，券商业绩延续高增</span>07-15 财联社：中报截止日，银行/券商/保险业绩分化，券商业绩延续高增</li>
+        </ul>
+      </div>
+      <div class="all-category">
+        <div class="all-category-title">🔬 科学 / 前沿</div>
+        <ul class="all-category-list">
+          <li><span class="date-badge">07-13</span><span class="source-badge">新华社：长征十号乙火箭回收技术全球首创，网系捕获验证成功，航天技术突破</span>07-13 新华社：长征十号乙火箭回收技术全球首创，网系捕获验证成功，航天技术突破</li>
+          <li><span class="date-badge">07-11</span><span class="source-badge">财联社：具身智能与产业化加速，机器人+创新发展大会成果丰硕</span>07-11 财联社：具身智能与产业化加速，机器人+创新发展大会成果丰硕</li>
+          <li><span class="date-badge">07-10</span><span class="source-badge">科技部：量子计算取得阶段性突破，超导量子比特数量创新高</span>07-10 科技部：量子计算取得阶段性突破，超导量子比特数量创新高</li>
+          <li><span class="date-badge">07-14</span><span class="source-badge">新华社：脑机接口临床试验取得进展，Neuralink与国产企业同步推进</span>07-14 新华社：脑机接口临床试验取得进展，Neuralink与国产企业同步推进</li>
+          <li><span class="date-badge">07-15</span><span class="source-badge">财联社：中报截止日，前沿科技企业融资活跃，硬科技投资热度回升</span>07-15 财联社：中报截止日，前沿科技企业融资活跃，硬科技投资热度回升</li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <script src="js/main.js"></script>
   <script>
+    const categoryData = {
+      ai: {
+        label: "AI / 大模型",
+        summaries: [
+          "07-14 华尔街见闻：美股科技股持续修复，苹果涨3.5%创历史新高，Meta+5.97%英伟达+4.03%",
+          "07-14 财联社：A股AI算力链分化反弹，中际旭创回升至1145元(+2.23%)，寒武纪调整-2.17%",
+          "07-13 华尔街见闻：SK海力士ADR上市首日涨14%，崔泰源称将加码在美AI数据中心投资",
+          "07-15 财联社：中报强制披露截止日，AI算力链（光模块/服务器/芯片）业绩预期乐观",
+          "07-14 新华社：工信部推动两化深度融合，AI赋能制造业数字化转型加速",
+        ]
+      },
+      semiconductor: {
+        label: "半导体 / 芯片",
+        summaries: [
+          "07-14 财联社：HBM板块全面走强，兆易创新涨2.42%领涨，存储芯片全面回暖",
+          "07-13 新浪财经：三星HBM4认证加速，有望三季度获英伟达认证，存储高景气延续",
+          "07-14 A股：半导体板块涨1.80%，受益于AI算力需求持续强劲，设备材料同步上涨",
+          "07-15 财联社：中报截止日，半导体产业链业绩预期乐观，设备龙头订单饱满",
+          "07-13 上交所：科创成长层指引发布，32家未盈利半导体企业进入，融资环境改善",
+        ]
+      },
+      robot: {
+        label: "机器人 / 自动化",
+        summaries: [
+          "07-14 财联社：世界机器人大会圆满落幕，绿的谐波+1.03%，板块进入震荡整固期",
+          "07-13 证券时报：特斯拉Optimus产线升级，量产时间节点进一步明确，供应链订单饱满",
+          "07-11 财联社：2026"机器人+"创新发展大会举行，聚焦具身智能与产业化，政策催化密集",
+          "07-14 新华社：工信部推动制造业数字化转型，工业机器人渗透率持续提升",
+          "07-15 财联社：中报截止日，机器人核心零部件企业业绩预期向好",
+        ]
+      },
+      car: {
+        label: "汽车 / 新能源车",
+        summaries: [
+          "07-14 A股：比亚迪涨1.11%至91元，宁德时代涨1.79%至355元，新能源整车表现稳健",
+          "07-13 新华社：中美外长会晤释放积极信号，有利于中美汽车贸易环境改善",
+          "07-10 财联社：6月新能源车销量同比增长35%，渗透率突破45%，全年销量有望超预期",
+          "07-14 华尔街见闻：苹果造车项目虽终止，但CarPlay生态扩展利好智能座舱供应链",
+          "07-15 财联社：中报截止日，新能源车产业链（电池/材料/整车）业绩分化明显",
+        ]
+      },
+      energy: {
+        label: "能源 / 新能源",
+        summaries: [
+          "07-14 财联社：稀土永磁板块继续强势，北方稀土涨3.2%，三季度精矿价格上调1.5%",
+          "07-13 新浪财经：WTI原油突破73美元/桶(+1.41%)，能源板块受益，油气企业盈利改善",
+          "07-11 六大行：存款利率下调至1.35%，降息周期持续，利好新能源等高景气赛道估值",
+          "07-14 新华社：国家能源局推动新型储能规模化发展，储能装机量持续高增",
+          "07-15 财联社：中报截止日，光伏/风电龙头企业业绩预期分化，储能延续高增",
+        ]
+      },
+      biotech: {
+        label: "生物医药 / 健康",
+        summaries: [
+          "07-14 证券时报：药明康德半年报净利润预增101.92%大超预期，CRO板块逆势大涨2.80%",
+          "07-13 证券时报：医保预申报机制落地，创新药8年价格保护正式生效，行业政策面向好",
+          "07-11 财联社：医保DRG/DIP 2.0版发布，创新药和器械获倾斜，支付改革深化",
+          "07-14 A股：恒瑞医药+1.85%、迈瑞医疗+0.99%，医药板块防御属性凸显，资金避险",
+          "07-15 财联社：中报截止日，CRO/CDMO业绩亮眼，创新药企出海加速",
+        ]
+      },
+      space: {
+        label: "航天 / 太空",
+        summaries: [
+          "07-14 财联社：商业航天板块高位震荡，中国卫通涨3.5%(不再涨停)，个股分化加剧",
+          "07-13 新华社：长征十号乙回收细节披露，网系捕获技术全球首创，商业化前景广阔",
+          "07-11 中国航天：2026下半年卫星互联网发射计划密集，商业航天进入加速期",
+          "07-14 新华社：工信部推动航天装备智能化，航天产业链景气度维持高位",
+          "07-15 财联社：中报截止日，航天电子/卫星通信企业订单饱满，业绩预期向好",
+        ]
+      },
+      security: {
+        label: "网络安全",
+        summaries: [
+          "07-14 新华社：工信部推动两化深度融合，网络安全成为工业互联网建设重点保障",
+          "07-13 财政部：险资长周期考核优化，网络安全等科技领域或获增量长期资金配置",
+          "07-12 工信部：信息化和工业化融合2025工作要点，网络安全能力升级成核心任务",
+          "07-14 财联社：数据安全法实施三周年，企业合规需求持续释放，行业景气度上行",
+          "07-15 财联社：中报截止日，网络安全龙头企业订单增速维持20%以上",
+        ]
+      },
+      tech: {
+        label: "科技 / 互联网",
+        summaries: [
+          "07-14 华尔街见闻：美股科技股大涨，苹果+3.5%创历史新高，Meta+5.97%英伟达+4.03%",
+          "07-14 财联社：A股科技板块分化，光模块反弹(+1.80%)、半导体走强、AI芯片调整",
+          "07-13 上交所：科创成长层指引发布，32家未盈利科技企业进入，资本市场支持硬科技",
+          "07-14 新华社：工信部推动科技自立自强，集成电路/AI/量子计算获政策重点支持",
+          "07-15 财联社：中报截止日，科技互联网巨头业绩分化，AI投入持续加大",
+        ]
+      },
+      consumer: {
+        label: "消费电子 / 数码",
+        summaries: [
+          "07-14 财联社：消费电子板块受益AI端侧创新，存储芯片涨价传导至终端产品",
+          "07-13 彭博：iPhone 17系列进入量产准备，苹果供应链订单饱满，立讯/歌尔受益",
+          "07-11 工信部：智能制造升级推动消费电子产业数字化转型，AR/VR新品密集发布",
+          "07-14 A股：消费电子指数涨0.80%，AI手机/PC换机周期启动，面板价格企稳",
+          "07-15 财联社：中报截止日，消费电子龙头Q2业绩环比改善，库存去化完成",
+        ]
+      },
+      finance: {
+        label: "财经 / 宏观",
+        summaries: [
+          "07-14 财联社：特朗普8月1日关税倒计时，对欧盟/墨西哥30%、日韩25%-40%，出口链承压",
+          "07-13 财政部：险资长周期考核权重调整为30%(当年)+50%(三年)+20%(五年)，引导长期配置",
+          "07-13 上交所/深交所：科创板成长层、创业板综指修订，资本市场改革深化",
+          "07-12 六大行：存款利率下调至1.35%，降息周期持续，利好权益资产估值",
+          "07-14 新华社：中美外长会晤释放积极信号，双边经贸关系有望稳定发展",
+          "07-15 财联社：中报截止日，银行/券商/保险业绩分化，券商业绩延续高增",
+        ]
+      },
+      science: {
+        label: "科学 / 前沿",
+        summaries: [
+          "07-13 新华社：长征十号乙火箭回收技术全球首创，网系捕获验证成功，航天技术突破",
+          "07-11 财联社：具身智能与产业化加速，机器人+创新发展大会成果丰硕",
+          "07-10 科技部：量子计算取得阶段性突破，超导量子比特数量创新高",
+          "07-14 新华社：脑机接口临床试验取得进展，Neuralink与国产企业同步推进",
+          "07-15 财联社：中报截止日，前沿科技企业融资活跃，硬科技投资热度回升",
+        ]
+      },
+    };
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    function openSaveModal(title, items) {
+      document.getElementById('noteTitleInput').value = title || '';
+      document.getElementById('noteContentInput').value = items ? items.join('\n') : '';
+      document.getElementById('saveNoteModal').classList.add('show');
+    }
+
+    function closeSaveModal() {
+      document.getElementById('saveNoteModal').classList.remove('show');
+    }
+
+    function confirmSaveNote() {
+      showToast('已存入研究记录');
+      closeSaveModal();
+    }
+
+    function closeAllSummaryModal() {
+      document.getElementById('allSummaryModal').classList.remove('show');
+    }
+
+    function switchCategory(tag) {
+      const data = categoryData[tag];
+      if (!data) return;
+      document.getElementById('currentTagLabel').textContent = data.label;
+      const body = document.getElementById('summaryBody');
+      body.innerHTML = data.summaries.map(s => `<li class="summary-animate">${s}</li>`).join('');
+      document.querySelectorAll('.tag-cloud .btn-tag').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tag === tag);
+      });
+      // 过滤新闻列表
+      const newsItems = document.querySelectorAll('#newsList .news-item');
+      newsItems.forEach(item => {
+        const tags = item.dataset.tags || '';
+        if (tags.includes(tag)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      // 标签切换
+      document.querySelectorAll('.tag-cloud .btn-tag').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tag = btn.dataset.tag;
+          if (tag) switchCategory(tag);
+        });
+      });
+
+      // 刷新
       const refreshBtn = document.getElementById('refreshBtn');
       if (refreshBtn) {
         refreshBtn.addEventListener('click', () => {
@@ -337,28 +663,38 @@
           }, 1200);
         });
       }
+
+      // 一键提炼全部要点 - 打开全部分类Modal
       const extractBtn = document.getElementById('extractBtn');
       if (extractBtn) {
         extractBtn.addEventListener('click', () => {
           extractBtn.innerHTML = '<span class="spin">⏳</span><span>提炼中...</span>';
-          showToast('AI 正在提炼全部要点...');
+          showToast('AI 正在提炼全部 12 个分类要点...');
           setTimeout(() => {
             extractBtn.innerHTML = '<span>✨</span><span>一键提炼全部要点</span>';
+            document.getElementById('allSummaryModal').classList.add('show');
             showToast('全部要点提炼完成');
-          }, 2000);
+          }, 1500);
         });
       }
+
+      // 重新提炼
       const reExtractBtn = document.getElementById('reExtractBtn');
       if (reExtractBtn) {
         reExtractBtn.addEventListener('click', () => {
+          const activeTag = document.querySelector('.tag-cloud .btn-tag.active');
+          const tag = activeTag ? activeTag.dataset.tag : 'ai';
           reExtractBtn.querySelector('span:first-child').classList.add('spin');
           showToast('重新提炼中...');
           setTimeout(() => {
+            switchCategory(tag);
             reExtractBtn.querySelector('span:first-child').classList.remove('spin');
             showToast('要点已更新');
-          }, 1000);
+          }, 800);
         });
       }
+
+      // 存入沉淀
       const saveToNotesBtn = document.getElementById('saveToNotesBtn');
       if (saveToNotesBtn) {
         saveToNotesBtn.addEventListener('click', () => {
@@ -367,6 +703,14 @@
           openSaveModal(currentLabel, items);
         });
       }
+
+      // 点击Modal外部关闭
+      document.getElementById('allSummaryModal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeAllSummaryModal();
+      });
+      document.getElementById('saveNoteModal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeSaveModal();
+      });
     });
   </script>
 </body>
